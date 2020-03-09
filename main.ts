@@ -250,12 +250,9 @@ namespace ovobotModules {
         } else { 
             pins.i2cWriteRegister(address, 0x00, 0x01);
             let res = pins.i2cReadBuffer(address, 6);//Buffer
-            let res1 = res.readInt16LE(0);
-            let res2 = res.readInt16LE(2);
-            let res3 = res.readInt16LE(4);
-            onboardTempValue = -450 + 1750 * res1 / 65535;
-            humidityValue = 100 * (res2) / 65535;
-            extendTempValue = (res3) * 10 / 16.0;
+            onboardTempValue = -450 + 1750 * (res[0] << 8 | res[1]) / 65535;
+            humidityValue = 100 * (res[2] << 8 | res[3]) / 65535;
+            extendTempValue = (res[5] << 8 | res[4]) * 10 / 16.0;
             if (measure == 0) {
                 return onboardTempValue * 0.1;
             } else if (measure == 1) {

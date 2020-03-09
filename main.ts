@@ -171,7 +171,7 @@ namespace ovobotModules {
     //% weight=65
     export function controlNeopixels(index: LedIndex, color: Color) { 
         let buf = pins.createBuffer(38);
-        var startPos;
+        let startPos;
         buf[0] = 0;
         buf[1] = 1;
         if (index == 0) {
@@ -241,8 +241,8 @@ namespace ovobotModules {
     export function readTempOrHumidity(module: ModuleIndex, measure: MesureContent): number{
         let buf = pins.createBuffer(6);
         let onboardTempValue = 400;
-        var extendTempValue;
-        var humidityValue;
+        let extendTempValue;
+        let humidityValue;
         let address = TEMP_ADDRESS + module;
         if (!tempDevEnable[module]) {
             tempEnable(address, module);

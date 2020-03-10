@@ -13,6 +13,17 @@ enum ModuleIndex {
     Module4
 }
 
+enum SubIndex { 
+    //% block="1"
+    subModule1 = 1,
+    //% block="2"
+    subModule2,
+    //% block="3"
+    subModule3,
+    //% block="4"
+    subModule4
+}
+
 enum MesureContent {
     //% block="onboard temp"
     TempOnBoard,
@@ -137,7 +148,7 @@ namespace ovobotModules {
     /**
      * TODO: 控制马达PWM输出。
      */
-    //% blockId=control_motor_output block="control motor %module output %speed"
+    //% blockId=control_motor_output block="control motor %module  output %speed"
     //% weight=65
     export function controlMotorOutput(module: ModuleIndex, speed: number) {
         let buf = pins.createBuffer(8);
@@ -152,14 +163,14 @@ namespace ovobotModules {
     /**
      * TODO: 控制舵机旋转。
      */
-    //% blockId=control_servo_output block="control servo %module rotate to %angle"
+    //% blockId=control_servo_output block="control servo %module index %submod  rotate to %angle"
     //% weight=65
-    export function controlServoOutput(module: ModuleIndex, angle: number) {
+    export function controlServoOutput(module: ModuleIndex,submod:SubIndex, angle: number) {
         let buf = pins.createBuffer(8);
         let newangle = constract(angle, -90, 90);
         let output = 19 + 24 * angle / 180.0;
         buf[0] = 0x00;
-        buf[1] = module;
+        buf[1] = submod;
         buf[2] = output;
         pins.i2cWriteBuffer(SERVO_ADDRESS + module, buf);
     }
@@ -169,6 +180,7 @@ namespace ovobotModules {
      */
     //% blockId=control_leds_output block="control neopixels %index color %color"
     //% weight=65
+    //% deprecated=true
     export function controlNeopixels(index: LedIndex, color: Color) { 
         let buf = pins.createBuffer(38);
         let startPos;

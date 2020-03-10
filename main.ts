@@ -110,7 +110,7 @@ namespace ovobotModules {
             return false;
         }
         for (let i = 0; i < len; i++) { 
-            if (str[i] == ".") { 
+            if (str.charAt(i) == ".") { 
                 isfloat = true;
                 return true;
             }

@@ -224,9 +224,9 @@ namespace ovobotModules {
     /**
      * TODO: 触摸按键是否接触。
      */
-    //% blockId=isTouchDown block="touchkey %module is touched"
+    //% blockId=isTouchDown block="touchkey %module is touched?"
     //% weight=65
-    export function isTouchDown(module: ModuleIndex):Boolean{ 
+    export function isTouchDown(module: ModuleIndex): boolean{ 
         pins.i2cWriteRegister(TOUCHKEY_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(TOUCHKEY_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
         return (data == 1);

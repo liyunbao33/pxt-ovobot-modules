@@ -207,13 +207,13 @@ namespace ovobotModules {
         let j = 0;
         if (validate(str_num)) { 
             for (let i = len - 1; i >= 0; i--) { 
-                if (str_num[i] == '.') {
-                    buf[5 - j] = (str_num[i - 1].charCodeAt(0) - '0'.charCodeAt(0)) | 0x80;
+                if (str_num.charAt(i) == '.') {
+                    buf[5 - j] = (str_num.charCodeAt(i - 1) - '0'.charCodeAt(0)) | 0x80;
                     i--;
-                } else if (str_num[i] == "-") {
+                } else if (str_num.charAt(i) == "-") {
                     buf[5 - j] = 0x40;
                 } else { 
-                    buf[5 - j] = str_num[i].charCodeAt(0) - '0'.charCodeAt(0);
+                    buf[5 - j] = str_num.charCodeAt(i) - '0'.charCodeAt(0);
                 }
                 j++;
             }

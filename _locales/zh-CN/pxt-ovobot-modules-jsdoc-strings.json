@@ -1,0 +1,11 @@
+{
+  "ModuleIndex": "Provides access to basic micro:bit functionality.",
+  "ovobotModules.controlMotorOutput": "TODO: 控制马达PWM输出。",
+  "ovobotModules.controlNeopixels": "TODO: 控制RGB灯条。",
+  "ovobotModules.controlServoOutput": "TODO: 控制舵机旋转。",
+  "ovobotModules.displaySegNumber": "TODO: 显示数码管数值。",
+  "ovobotModules.isTouchDown": "TODO: 触摸按键是否接触。",
+  "ovobotModules.readDistance": "TODO: 获取超声波传感器与前方障碍物的距离函数。",
+  "ovobotModules.readPmData": "TODO: 读取电位器。",
+  "ovobotModules.readTempOrHumidity": "TODO: 读取温湿度。"
+}

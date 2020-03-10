@@ -164,6 +164,7 @@ namespace ovobotModules {
      * TODO: 控制舵机旋转。
      */
     //% blockId=control_servo_output block="control servo %module index %submod  rotate to %angle"
+    //% angle.min=-90 angle.max= 90
     //% weight=65
     export function controlServoOutput(module: ModuleIndex,submod:SubIndex, angle: number) {
         let buf = pins.createBuffer(8);

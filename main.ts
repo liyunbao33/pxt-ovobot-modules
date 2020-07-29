@@ -93,6 +93,7 @@ namespace ovobotModules {
     const TOUCHKEY_ADDRESS = 0x70
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
+    const SOIL_ADDRESS = 0xF8
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -288,6 +289,17 @@ namespace ovobotModules {
         pins.i2cWriteRegister(PM_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(PM_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (255 - data);
+    }
+
+    /**
+     * TODO: 读取土壤湿度。
+     */
+    //% blockId=soil_humidity block="read soil %module data"
+    //% weight=65
+    export function soil_humidity(module: ModuleIndex): number{ 
+        pins.i2cWriteRegister(SOIL_ADDRESS, 0x00, 0x01);
+        let data = pins.i2cReadRegister(SOIL_ADDRESS, 0x01, NumberFormat.UInt8LE);
+        return (data);
     }
 
 }

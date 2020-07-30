@@ -7,5 +7,7 @@
   "ovobotModules.isTouchDown": "TODO: 触摸按键是否接触。",
   "ovobotModules.readDistance": "TODO: 获取超声波传感器与前方障碍物的距离函数。",
   "ovobotModules.readPmData": "TODO: 读取电位器。",
+  "ovobotModules.readSoilData": "TODO: 读取土壤湿度。",
   "ovobotModules.readTempOrHumidity": "TODO: 读取温湿度。"
+
 }

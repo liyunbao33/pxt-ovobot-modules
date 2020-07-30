@@ -9,6 +9,6 @@
   "ovobotModules.readPmData": "TODO: 读取电位器。",
   "ovobotModules.readSoilData": "TODO: 读取土壤湿度。",
   "ovobotModules.readlineData": "TODO: 读取巡线值。",
+  "ovobotModules.readColorData": "TODO: 读取颜色值。",
   "ovobotModules.readTempOrHumidity": "TODO: 读取温湿度。"
-
 }

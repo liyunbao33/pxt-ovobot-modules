@@ -95,6 +95,7 @@ namespace ovobotModules {
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
+    const COLOR_ADDRESS = 0x40
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -311,6 +312,17 @@ namespace ovobotModules {
     export function readlineData(module: ModuleIndex): number{ 
         pins.i2cWriteRegister(LINE_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(LINE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
+     * TODO: 读取颜色值。
+     */
+    //% blockId=read_color block="read %module color data"
+    //% weight=65
+    export function readColorData(module: ModuleIndex): number{ 
+        pins.i2cWriteRegister(COLOR_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(COLOR_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

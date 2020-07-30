@@ -93,7 +93,7 @@ namespace ovobotModules {
     const TOUCHKEY_ADDRESS = 0x70
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
-    const SOIL_ADDRESS = 0x54
+    const SOIL_ADDRESS = 0x48
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]

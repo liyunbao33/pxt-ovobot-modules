@@ -94,6 +94,7 @@ namespace ovobotModules {
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48
+    const LINE_ADDRESS = 0x51
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -299,6 +300,17 @@ namespace ovobotModules {
     export function readSoilData(module: ModuleIndex): number{ 
         pins.i2cWriteRegister(SOIL_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(SOIL_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
+     * TODO: 读取巡线值。
+     */
+    //% blockId=read_line block="read %module line data"
+    //% weight=65
+    export function readlineData(module: ModuleIndex): number{ 
+        pins.i2cWriteRegister(LINE_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(LINE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

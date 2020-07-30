@@ -40,6 +40,7 @@
   "ovobotModules.readDistance|block": "超声波距离 cm",
   "ovobotModules.readPmData|block": "电位器 %module 数值",
   "ovobotModules.readSoilData|block": "土壤湿度 %module 数值",
+  "ovobotModules.readlineData|block": "巡线 %module 数值",
   "ovobotModules.readTempOrHumidity|block": "温湿度传感器 %module  %measure",
   "ovobotModules|block": "Ovobot 外设",
   "{id:category}OvobotModules": "Ovobot 基础扩展"

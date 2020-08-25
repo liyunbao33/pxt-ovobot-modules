@@ -261,6 +261,18 @@ namespace ovobotModules {
         return (data == 1);
     }
 
+
+    /**
+     * TODO: 带rgb触摸按键值。
+     */
+    //% blockId=read_rgbtouch block="read %module rgbtouch data"
+    //% weight=65
+    export function readrgbTouchData(module: ModuleIndex): number{ 
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS  + module , 0x10, NumberFormat.UInt8LE);
+        return (data);
+    }
+
     /**
      * TODO: 带rgb触摸按键是否接触。
      */

@@ -91,6 +91,7 @@ namespace ovobotModules {
     const LED_ADDRESS = 0x53
     const SEG_ADDRESS = 0x6C
     const TOUCHKEY_ADDRESS = 0x70
+    const RGB_TOUCHKEY_ADDRESS = 44
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48
@@ -246,6 +247,17 @@ namespace ovobotModules {
     export function isTouchDown(module: ModuleIndex): boolean{ 
         pins.i2cWriteRegister(TOUCHKEY_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(TOUCHKEY_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        return (data == 1);
+    }
+
+    /**
+     * TODO: 带rgb触摸按键是否接触。
+     */
+    //% blockId=isRgbTouchDown block="rgbTouchkey %module is touched?"
+    //% weight=65
+    export function isRgbTouchDown(module: ModuleIndex): boolean{ 
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x10, NumberFormat.UInt8LE);
         return (data == 1);
     }
 

@@ -268,8 +268,8 @@ namespace ovobotModules {
     //% blockId=read_rgbtouch block="read %module rgbtouch data"
     //% weight=65
     export function readrgbTouchData(module: ModuleIndex): number{ 
-        pins.i2cWriteRegister(SOIL_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(SOIL_ADDRESS  + module , 0x11, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS  + module , 0x12, NumberFormat.UInt8LE);
         return (data);
     }
 

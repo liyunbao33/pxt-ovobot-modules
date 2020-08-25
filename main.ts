@@ -97,6 +97,7 @@ namespace ovobotModules {
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40
+    const RGB_ADDRESS = 0x4C
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -179,6 +180,19 @@ namespace ovobotModules {
         buf[1] = submod;
         buf[2] = output;
         pins.i2cWriteBuffer(SERVO_ADDRESS + module, buf);
+    }
+
+    /**
+     * TODO: 控制RGB
+     */
+    //% block="control RGB %module index"
+    //% weight=65
+    export function controlRGBOutput(module: ModuleIndex) {
+        let buf = pins.createBuffer(16);
+        buf[0] = 0x01;
+        buf[1] = 0xFF;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(RGB_ADDRESS + module, buf);
     }
 
     /**

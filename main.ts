@@ -257,6 +257,7 @@ namespace ovobotModules {
     //% weight=65
     export function isRgbTouchDown(module: ModuleIndex): boolean{ 
         pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x01, 0xFF);
         let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x10, NumberFormat.UInt8LE);
         return (data == 1);
     }

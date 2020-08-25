@@ -202,7 +202,7 @@ namespace ovobotModules {
         buf[10] = 0xFF;
         buf[11] = 0xFF;
         buf[12] = 0xFF;
-        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS + module, buf);
+        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, buf);
     }
 
     /**

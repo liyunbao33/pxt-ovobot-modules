@@ -192,6 +192,10 @@ namespace ovobotModules {
         buf[0] = 0x01;
         buf[1] = 0xFF;
         buf[2] = 0;
+        buf[3] = 0;
+        buf[4] = 0xFF;
+        buf[5] = 0xFF;
+        buf[6] = 0xFF;
         pins.i2cWriteBuffer(RGB_ADDRESS + module, buf);
     }
 

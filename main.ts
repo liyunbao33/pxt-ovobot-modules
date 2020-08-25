@@ -91,7 +91,7 @@ namespace ovobotModules {
     const LED_ADDRESS = 0x53
     const SEG_ADDRESS = 0x6C
     const TOUCHKEY_ADDRESS = 0x70
-    const RGB_TOUCHKEY_ADDRESS = 44
+    const RGB_TOUCHKEY_ADDRESS = 0x44
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48

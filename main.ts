@@ -188,15 +188,8 @@ namespace ovobotModules {
     //% block="control RGB %module index"
     //% weight=65
     export function controlRGBOutput(module: ModuleIndex) {
-        let buf = pins.createBuffer(16);
-        buf[0] = 0x01;
-        buf[1] = 0xFF;
-        buf[2] = 0;
-        buf[3] = 0;
-        buf[4] = 0xFF;
-        buf[5] = 0xFF;
-        buf[6] = 0xFF;
-        pins.i2cWriteBuffer(RGB_ADDRESS + module, buf);
+        pins.i2cWriteRegister(RGB_ADDRESS + module, 0x00, 0x01);
+        pins.i2cWriteRegister(RGB_ADDRESS + module, 0x01, 0xFF);
     }
 
     /**

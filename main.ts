@@ -97,7 +97,7 @@ namespace ovobotModules {
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40
-    const RGB_ADDRESS = 0x44
+    const RGB_ADDRESS = 0x4C
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -202,7 +202,7 @@ namespace ovobotModules {
         buf[10] = 0xFF;
         buf[11] = 0xFF;
         buf[12] = 0xFF;
-        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, buf);
+        pins.i2cWriteBuffer(RGB_ADDRESS, buf);
     }
 
     /**
@@ -210,7 +210,7 @@ namespace ovobotModules {
      */
     //% blockId=control_leds_output block="control neopixels %index color %color"
     //% weight=65
-    //% deprecated=true
+    //% deprecated=false
     export function controlNeopixels(index: LedIndex, color: Color) { 
         let buf = pins.createBuffer(38);
         let startPos;

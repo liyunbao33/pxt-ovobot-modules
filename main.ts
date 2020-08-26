@@ -223,9 +223,9 @@ namespace ovobotModules {
             }
         } else { 
             startPos = 2 + 3 * (index - 1);
-            buf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
-            buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
-            buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
+            buf[startPos] = 0xFF;
+            buf[startPos + 1] = 0;
+            buf[startPos + 2] = 0;
         }
         pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, buf);
     }

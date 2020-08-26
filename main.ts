@@ -227,7 +227,7 @@ namespace ovobotModules {
             buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
             buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
         }
-        pins.i2cWriteBuffer(RGB_ADDRESS, buf);
+        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, buf);
     }
 
     /**

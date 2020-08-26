@@ -46,20 +46,20 @@ enum LedIndex {
     L4,
     //% block="5"
     L5,
-    //% block="6"
-    L6,
-    //% block="7"
-    L7,
-    //% block="8"
-    L8,
-    //% block="9"
-    L9,
-    //% block="10"
-    L10,
-    //% block="11"
-    L11,
-    //% block="12"
-    L12  
+    // //% block="6"
+    // L6,
+    // //% block="7"
+    // L7,
+    // //% block="8"
+    // L8,
+    // //% block="9"
+    // L9,
+    // //% block="10"
+    // L10,
+    // //% block="11"
+    // L11,
+    // //% block="12"
+    // L12  
 }
 
 enum Color {

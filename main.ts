@@ -216,12 +216,12 @@ namespace ovobotModules {
         buf[0] = 0;
         buf[1] = 1;
         if (index == 0) {
-            for (let i = 5; i < 18; i += 3) {
+            for (let i = 2; i < 18; i += 3) {
                 buf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
                 buf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
                 buf[i + 2] = (selectColors[color] & 0xff) / lowBright;
             }
-        } else {
+        } else { 
             startPos = 2 + 3 * index;
             buf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
             buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;

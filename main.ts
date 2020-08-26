@@ -185,7 +185,7 @@ namespace ovobotModules {
     /**
      * TODO: 控制RGB
      */
-    //% block="control RGB %module index"
+    //% blockId=control_RGB_output block="control RGB %module"
     //% weight=65
     export function controlRGBOutput(module: ModuleIndex) {
         let buf = pins.createBuffer(13);

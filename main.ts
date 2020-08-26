@@ -189,8 +189,8 @@ namespace ovobotModules {
     //% weight=65
     export function controlRGBOutput(module: ModuleIndex) {
         let buf = pins.createBuffer(13);
-        buf[0] = 0x01;
-        buf[1] = 0xFF;
+        buf[0] = 0;
+        buf[1] = 1;
         buf[2] = 0xFF;
         buf[3] = 0xFF;
         buf[4] = 0xFF;
@@ -281,7 +281,7 @@ namespace ovobotModules {
     //% blockId=read_rgbtouch block="read %module rgbtouch data"
     //% weight=65
     export function readrgbTouchData(module: ModuleIndex): number{ 
-        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x01, 0xFF);
         let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS  + module , 0x10, NumberFormat.UInt8LE);
         return (data);
     }

@@ -211,7 +211,7 @@ namespace ovobotModules {
     //% blockId=control_leds_output block="control neopixels %index color %color"
     //% weight=65
     export function controlNeopixels(index: LedIndex, color: Color) { 
-        let buf = pins.createBuffer(38);
+        let buf = pins.createBuffer(14);
         let startPos;
         buf[0] = 0;
         buf[1] = 1;

@@ -252,14 +252,14 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 霍尔开关是否打开。
+     * TODO: 读取霍尔。
      */
-    //% blockId=isHoareOn block="hoare %module is on?"
+    //% blockId=read_hoare block="read %module hoare data"
     //% weight=65
-    export function isHoareOn(module: ModuleIndex): boolean{    
+    export function readHoareData(module: ModuleIndex): number{
         pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
-        return (data == 1);
+        let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
     }
 
     /**

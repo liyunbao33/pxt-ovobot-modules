@@ -257,8 +257,8 @@ namespace ovobotModules {
     //% blockId=read_hoare block="read %module hoare data"
     //% weight=65
     export function readHoareData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(SOIL_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(SOIL_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

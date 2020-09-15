@@ -98,6 +98,7 @@ namespace ovobotModules {
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40
     const RGB_ADDRESS = 0x4C
+    const HOARE_ADDRESS = 0x44
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -183,29 +184,6 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 控制RGB
-     */
-    //% blockId=control_RGB_output block="control RGB %module"
-    //% weight=65
-    export function controlRGBOutput(module: ModuleIndex) {
-        let buf = pins.createBuffer(13);
-        buf[0] = 0;
-        buf[1] = 1;
-        buf[2] = 0xFF;
-        buf[3] = 0xFF;
-        buf[4] = 0xFF;
-        buf[5] = 0xFF;
-        buf[6] = 0xFF;
-        buf[7] = 0xFF;
-        buf[8] = 0xFF;
-        buf[9] = 0xFF;
-        buf[10] = 0xFF;
-        buf[11] = 0xFF;
-        buf[12] = 0xFF;
-        pins.i2cWriteBuffer(RGB_ADDRESS, buf);
-    }
-
-    /**
      * TODO: 控制RGB灯条。
      */
     //% blockId=control_leds_output block="control neopixels %index color %color"
@@ -273,26 +251,14 @@ namespace ovobotModules {
         return (data == 1);
     }
 
-
     /**
-     * TODO: 带rgb触摸按键值。
+     * TODO: 霍尔开关是否打开。
      */
-    //% blockId=read_rgbtouch block="read %module rgbtouch data"
+    //% blockId=isHoareOn block="hoare %module is on?"
     //% weight=65
-    export function readrgbTouchData(module: ModuleIndex): number{ 
-    //    pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS  + module , 0x10, NumberFormat.UInt8LE);
-        return (data);
-    }
-
-    /**
-     * TODO: 带rgb触摸按键是否接触。
-     */
-    //% blockId=isRgbTouchDown block="rgbTouchkey %module is touched?"
-    //% weight=65
-    export function isRgbTouchDown(module: ModuleIndex): boolean{ 
-        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x10, NumberFormat.UInt8LE);
+    export function isHoareOn(module: ModuleIndex): boolean{    
+        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
         return (data == 1);
     }
 

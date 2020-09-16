@@ -99,6 +99,7 @@ namespace ovobotModules {
     const COLOR_ADDRESS = 0x40
     const RGB_ADDRESS = 0x4C
     const HOARE_ADDRESS = 0x44
+    const LOUDNESS_ADDRESS = 0x38
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -259,6 +260,17 @@ namespace ovobotModules {
     export function readHoareData(module: ModuleIndex): number{
         pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
+     * TODO: 读取声音响度。
+     */
+    //% blockId=read_loudness block="read %module loudness data"
+    //% weight=65
+    export function readLoudnessData(module: ModuleIndex): number{
+        pins.i2cWriteRegister(LOUDNESS_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(LOUDNESS_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

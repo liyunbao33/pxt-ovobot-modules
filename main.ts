@@ -91,7 +91,7 @@ namespace ovobotModules {
     const LED_ADDRESS = 0x53
     const SEG_ADDRESS = 0x6C
     const TOUCHKEY_ADDRESS = 0x70
-    const RGB_TOUCHKEY_ADDRESS = 0x44
+    const RGB_TOUCHKEY_ADDRESS = 0x4C
     const TEMP_ADDRESS = 0x5c
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48
@@ -201,7 +201,7 @@ namespace ovobotModules {
                 buf[i + 2] = (selectColors[color] & 0xff) / lowBright;
             }
         } else { 
-            startPos = 2 + 3 * index;
+            startPos = 2 + 3 * (index-1);
             buf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
             buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
             buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;

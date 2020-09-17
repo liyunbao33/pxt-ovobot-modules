@@ -13,6 +13,13 @@ enum ModuleIndex {
     Module4
 }
 
+enum TouchIndex {
+    //% block="1"
+    T1,
+    //% block="2"
+    T2,
+}
+
 enum SubIndex { 
     //% block="1"
     subModule1 = 1,
@@ -242,6 +249,22 @@ namespace ovobotModules {
         }
     }
     
+    /**
+     * TODO: 读取触摸按键。
+     */
+    //% blockId=read_touch block="read %module touch data"
+    //% weight=65
+    export function readHoareData(module: ModuleIndex, index: TouchIndex): number{
+        pins.i2cWriteRegister(SEG_ADDRESS + module, 0x00, 0x01);
+        if (index == 0) {
+            let data = pins.i2cReadRegister(SEG_ADDRESS + module, 0x013, NumberFormat.UInt8LE);
+        } else {
+            let data = pins.i2cReadRegister(SEG_ADDRESS + module, 0x014, NumberFormat.UInt8LE);
+        }
+        return (data);
+    }
+
+
     /**
      * TODO: 触摸按键是否接触。
      */

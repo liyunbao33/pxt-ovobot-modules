@@ -193,25 +193,6 @@ namespace ovobotModules {
         let buf = pins.createBuffer(20);
         let startPos;
 
-        buf[2] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x01, NumberFormat.UInt8LE);
-        buf[3] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x02, NumberFormat.UInt8LE);
-        buf[4] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x03, NumberFormat.UInt8LE);
-        buf[5] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x04, NumberFormat.UInt8LE);
-        buf[6] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x05, NumberFormat.UInt8LE);
-        buf[7] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x06, NumberFormat.UInt8LE);
-        buf[8] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x07, NumberFormat.UInt8LE);
-        buf[9] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x08, NumberFormat.UInt8LE);
-        buf[10] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x09, NumberFormat.UInt8LE);
-        buf[11] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0A, NumberFormat.UInt8LE);
-        buf[12] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0B, NumberFormat.UInt8LE);
-        buf[13] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0C, NumberFormat.UInt8LE);
-        buf[14] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0D, NumberFormat.UInt8LE);
-        buf[15] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0E, NumberFormat.UInt8LE);
-        buf[16] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x0F, NumberFormat.UInt8LE);
-        buf[17] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x10, NumberFormat.UInt8LE);
-        buf[18] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x11, NumberFormat.UInt8LE);
-        buf[19] = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS, 0x12, NumberFormat.UInt8LE);
-
         buf[0] = 0;
         buf[1] = 1;
         if (index == 0) {

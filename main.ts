@@ -46,8 +46,8 @@ enum LedIndex {
     L4,
     //% block="5"
     L5,
-    // //% block="6"
-    // L6,
+    //% block="6"
+    L6,
     // //% block="7"
     // L7,
     // //% block="8"

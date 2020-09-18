@@ -255,8 +255,8 @@ namespace ovobotModules {
     //% blockId=read_touch block="read %module touch data"
     //% weight=65
     export function readTouchData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(SEG_ADDRESS, 0x00, 0x01);
-        let data = pins.i2cReadRegister(SEG_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS, 0x00, 0x01);
+        let data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

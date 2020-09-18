@@ -252,7 +252,7 @@ namespace ovobotModules {
     /**
      * TODO: 读取触摸按键。
      */
-    //% blockId=read_touch block="read touch %index data"
+    //% blockId=read_touch block="read %module touch %index data"
     //% weight=65
     export function readTouchData(module: ModuleIndex, index: TouchIndex): number{
         pins.i2cWriteRegister(SEG_ADDRESS, 0x00, 0x01);

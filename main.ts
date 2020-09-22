@@ -289,6 +289,19 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: 读取压力值。
+     */
+    //% blockId=read_press block="read %module press data"
+    //% weight=65
+    export function readPressData(module: ModuleIndex): number{
+        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
+        let dataL = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        let dataH = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+        let data = dataL+dataH*256;
+        return (data);
+    }
+
+    /**
      * TODO: 读取声音响度。
      */
     //% blockId=read_loudness block="read %module loudness data"

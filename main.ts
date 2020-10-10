@@ -20,6 +20,17 @@ enum TouchIndex {
     T2,
 }
 
+enum KeyIndex {
+    //% block="1"
+    T1,
+    //% block="2"
+    T2,
+    //% block="3"
+    T3,
+    //% block="4"
+    T4
+}
+
 enum SubIndex { 
     //% block="1"
     subModule1 = 1,
@@ -107,6 +118,7 @@ namespace ovobotModules {
     const RGB_ADDRESS = 0x3C
     const HOARE_ADDRESS = 0x44
     const LOUDNESS_ADDRESS = 0x38
+    const KEY_ADDRESS = 30
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -261,6 +273,26 @@ namespace ovobotModules {
             data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x13, NumberFormat.UInt8LE);
         } else {
             data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x14, NumberFormat.UInt8LE);
+        }
+        return (data);
+    }
+
+    /**
+     * TODO: 读取开关按键值。
+     */
+    //% blockId=read_key block="read %module key %index data"
+    //% weight=65
+    export function readKeyData(module: ModuleIndex, index: KeyIndex): number{
+        pins.i2cWriteRegister(KEY_ADDRESS, 0x00, 0x01);
+        let data;
+        if (index == 0) {
+            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        } else if (index == 1) {
+            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+        } else if (index == 2) {
+            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
+        } else if (index == 3) {
+            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
         }
         return (data);
     }

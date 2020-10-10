@@ -283,16 +283,16 @@ namespace ovobotModules {
     //% blockId=read_key block="read %module key %index data"
     //% weight=65
     export function readKeyData(module: ModuleIndex, index: KeyIndex): number{
-        pins.i2cWriteRegister(KEY_ADDRESS, 0x00, 0x01);
+        pins.i2cWriteRegister(HOARE_ADDRESS, 0x00, 0x01);
         let data;
         if (index == 0) {
-            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
         } else if (index == 1) {
-            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
         } else if (index == 2) {
-            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
         } else if (index == 3) {
-            data = pins.i2cReadRegister(KEY_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
         }
         return (data);
     }

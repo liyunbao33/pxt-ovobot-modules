@@ -118,7 +118,7 @@ namespace ovobotModules {
     const RGB_ADDRESS = 0x3C
     const HOARE_ADDRESS = 0x44
     const LOUDNESS_ADDRESS = 0x38
-    const KEY_ADDRESS = 30
+    const KEY_ADDRESS = 0x30
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]

@@ -119,6 +119,7 @@ namespace ovobotModules {
     const HOARE_ADDRESS = 0x44
     const LOUDNESS_ADDRESS = 0x38
     const KEY_ADDRESS = 0x30
+    const PRESS_ADDRESS = 0x34
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false,false,false,false]
@@ -326,9 +327,9 @@ namespace ovobotModules {
     //% blockId=read_press block="read %module press data"
     //% weight=65
     export function readPressData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
-        let dataL = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
-        let dataH = pins.i2cReadRegister(HOARE_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(PRESS_ADDRESS + module, 0x00, 0x01);
+        let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
         let data = dataL+dataH*256;
         return (data);
     }

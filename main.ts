@@ -51,10 +51,10 @@ enum LedIndex {
     L3,
     //% block="4"
     L4,
-    //% block="5"
-    L5,
-    //% block="6"
-    L6,
+    // //% block="5"
+    // L5,
+    // //% block="6"
+    // L6,
     // //% block="7"
     // L7,
     // //% block="8"
@@ -104,7 +104,7 @@ namespace ovobotModules {
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40
-    const RGB_ADDRESS = 0x4C
+    const RGB_ADDRESS = 0x3C
     const HOARE_ADDRESS = 0x44
     const LOUDNESS_ADDRESS = 0x38
     const lowBright = 8
@@ -197,13 +197,13 @@ namespace ovobotModules {
     //% blockId=control_leds_output block="control neopixels %index color %color"
     //% weight=65
     export function controlNeopixels(index: LedIndex, color: Color) { 
-        let buf = pins.createBuffer(20);
+        let buf = pins.createBuffer(14);
         let startPos;
 
         buf[0] = 0;
         buf[1] = 1;
         if (index == 0) {
-            for (let i = 2; i < 18; i += 3) {
+            for (let i = 2; i < 12; i += 3) {
                 buf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
                 buf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
                 buf[i + 2] = (selectColors[color] & 0xff) / lowBright;
@@ -214,7 +214,7 @@ namespace ovobotModules {
             buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
             buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
         }
-        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, buf);
+        pins.i2cWriteBuffer(RGB_ADDRESS, buf);
     }
 
     /**

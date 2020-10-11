@@ -231,24 +231,35 @@ namespace ovobotModules {
         pins.i2cWriteBuffer(RGB_ADDRESS, buf);
     }
 
+    // /**
+    //  * TODO: 物联网写数据。
+    //  */
+    // //% blockId=iot_write_data block="write iot %module data"
+    // //% weight=65
+    // export function iotWriteData(module: ModuleIndex) {
+    //     let buf = pins.createBuffer(10);
+    //     buf[0] = 20;
+    //     buf[1] = 30;
+    //     buf[2] = 40;
+    //     buf[3] = 50;
+    //     buf[4] = 60;
+    //     buf[5] = 70;
+    //     buf[6] = 80;
+    //     buf[7] = 123;
+    //     buf[8] = 44;
+    //     buf[9] = 55;
+    //     pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    // }
+
     /**
-     * TODO: 物联网写数据。
+     * TODO: 物联网读数据。
      */
-    //% blockId=iot_write_data block="write iot %module data"
+    //% blockId=iot_read_data block="read iot %module data"
     //% weight=65
-    export function iotWriteData(module: ModuleIndex) {
-        let buf = pins.createBuffer(10);
-        buf[0] = 20;
-        buf[1] = 30;
-        buf[2] = 40;
-        buf[3] = 50;
-        buf[4] = 60;
-        buf[5] = 70;
-        buf[6] = 80;
-        buf[7] = 123;
-        buf[8] = 44;
-        buf[9] = 55;
-        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    export function readIotData(module: ModuleIndex): number{
+        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
     }
 
     /**

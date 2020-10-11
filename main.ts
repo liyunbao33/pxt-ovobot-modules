@@ -234,7 +234,7 @@ namespace ovobotModules {
     /**
      * TODO: 物联网写数据。
      */
-    //% blockId=iot_write_data block="write %module data"
+    //% blockId=iot_write_data block="write iot %module data"
     //% weight=65
     export function iotWriteData(module: ModuleIndex) {
         let buf = pins.createBuffer(10);

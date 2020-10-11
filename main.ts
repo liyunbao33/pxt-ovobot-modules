@@ -237,7 +237,7 @@ namespace ovobotModules {
     //% blockId=iot_write_data block="write iot %module data"
     //% weight=65
     export function iotWriteData(module: ModuleIndex) {
-        let buf = pins.createBuffer(34);
+        let buf = pins.createBuffer(66);
         buf[0] = 0;
         buf[1] = 1;
         buf[2] = 67;
@@ -272,6 +272,40 @@ namespace ovobotModules {
         buf[31] = 0;
         buf[32] = 0;
         buf[33] = 0;
+
+        buf[34] = 76;
+        buf[35] = 74;
+        buf[36] = 70;
+        buf[37] = 50;
+        buf[38] = 48;
+        buf[39] = 50;
+        buf[40] = 48;
+        buf[41] = 56;
+        buf[42] = 48;
+        buf[43] = 55;
+        buf[44] = 50;
+        buf[45] = 48;
+        buf[46] = 0;
+        buf[47] = 0;
+        buf[48] = 0;
+        buf[49] = 0;
+        buf[50] = 0;
+        buf[51] = 0;
+        buf[52] = 0;
+        buf[53] = 0;
+        buf[54] = 0;
+        buf[55] = 0;
+        buf[56] = 0;
+        buf[57] = 0;
+        buf[58] = 0;
+        buf[59] = 0;
+        buf[60] = 0;
+        buf[61] = 0;
+        buf[62] = 0;
+        buf[63] = 0;
+        buf[64] = 0;
+        buf[65] = 0;
+
 
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }

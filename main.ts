@@ -337,6 +337,17 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: 读物联网wifi状态。
+     */
+    //% blockId=read_iot_wifi_data block="read iot wifi %module data"
+    //% weight=65
+    export function readIotWifiData(module: ModuleIndex): number{
+        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x49, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
      * TODO: 显示数码管数值。
      */
     //% blockId=display_seg_number block="control seg %module display number %num"

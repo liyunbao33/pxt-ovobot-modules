@@ -272,7 +272,6 @@ namespace ovobotModules {
         buf[31] = 0;
         buf[32] = 0;
         buf[33] = 0;
-
         buf[34] = 76;
         buf[35] = 74;
         buf[36] = 70;

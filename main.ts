@@ -238,8 +238,8 @@ namespace ovobotModules {
     //% weight=65
     export function iotWriteData(module: ModuleIndex) {
         let buf = pins.createBuffer(10);
-        buf[0] = 76;
-        buf[1] = 74;
+        buf[0] = 0;
+        buf[1] = 1;
         buf[2] = 70;
         buf[3] = 50;
         buf[4] = 48;

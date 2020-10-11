@@ -111,6 +111,7 @@ namespace ovobotModules {
     const TOUCHKEY_ADDRESS = 0x70
     const RGB_TOUCHKEY_ADDRESS = 0x4C
     const TEMP_ADDRESS = 0x5c
+    const IOT_ADDRESS = 0x50
     const PM_ADDRESS = 0x60
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
@@ -228,6 +229,26 @@ namespace ovobotModules {
             buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
         }
         pins.i2cWriteBuffer(RGB_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: 物联网写数据。
+     */
+    //% blockId=iot_write_data block="write %module data"
+    //% weight=65
+    export function iotWriteData(module: ModuleIndex) {
+        let buf = pins.createBuffer(10);
+        buf[0] = 20;
+        buf[1] = 30;
+        buf[2] = 40;
+        buf[3] = 50;
+        buf[4] = 60;
+        buf[5] = 70;
+        buf[6] = 80;
+        buf[7] = 123;
+        buf[8] = 44;
+        buf[9] = 55;
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
     /**

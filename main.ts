@@ -316,7 +316,6 @@ namespace ovobotModules {
     //% weight=65
     export function iotWriteData(module: ModuleIndex) {
         const text = "ChinaNet-8A1A2E"
-        text.charCodeAt
         let buf = pins.createBuffer(66);
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);

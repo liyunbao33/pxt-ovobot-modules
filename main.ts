@@ -315,7 +315,7 @@ namespace ovobotModules {
     //% blockId=iot_write_data block="write iot %module data"
     //% weight=65
     export function iotWriteData(module: ModuleIndex) {
-        const text = "ChinaNet-8A1A2E,LJF202080720\r\n"
+        const text = "qiannan,520520520\r\n"
         let buf = pins.createBuffer(66);
         buf[0] = 0;
         buf[1] = 1;

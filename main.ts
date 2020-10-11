@@ -252,7 +252,7 @@ namespace ovobotModules {
         buf[11] = 56;
         buf[12] = 65;
         buf[13] = 49;
-        buf[14] = 64;
+        buf[14] = 69;
         buf[15] = 50;
         buf[16] = 69;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);

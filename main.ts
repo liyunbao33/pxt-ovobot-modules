@@ -198,6 +198,8 @@ namespace ovobotModules {
     }
 
 
+
+
     /**
      * TODO: 控制舵机旋转。
      */
@@ -327,6 +329,22 @@ namespace ovobotModules {
         const text = "qiannan,520520520\r\n"
         let buf = pins.createBuffer(66);
         buf[0] = 0;
+        buf[1] = 1;
+        for (let i = 0; i < text.length; i++) {
+            buf[i + 2] = text.charCodeAt(i);
+        }
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: MQTT发布消息。
+     */
+    //% blockId=mqtt_pub_message block="mqtt pub %module message"
+    //% weight=65
+    export function mqttPubMessage(module: ModuleIndex) {
+        const text = "soil,153\r\n"
+        let buf = pins.createBuffer(66);
+        buf[0] = 0x51;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);

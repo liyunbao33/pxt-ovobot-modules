@@ -188,6 +188,15 @@ namespace ovobotModules {
         pins.i2cWriteBuffer(MOTOR_ADDRESS + module, buf);
     }
 
+    /**
+     * TODO: 连接MQTT。
+     */
+    //% block="link %module mqtt"
+    //% weight=65
+    export function linkMqtt(module: ModuleIndex) {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x50, 0x01);
+    }
+
 
     /**
      * TODO: 控制舵机旋转。

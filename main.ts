@@ -353,6 +353,22 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: MQTT订阅消息。
+     */
+    //% blockId=mqtt_sub_topic block="mqtt sub %module topic"
+    //% weight=65
+    export function mqttSubTopic(module: ModuleIndex) {
+        const text = "soil\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0x98;
+        buf[1] = 1;
+        for (let i = 0; i < text.length; i++) {
+            buf[i + 2] = text.charCodeAt(i);
+        }
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
      * TODO: 物联网读数据。
      */
     //% blockId=iot_read_data block="read iot %module data"

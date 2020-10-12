@@ -369,6 +369,15 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: MQTT获取订阅消息。
+     */
+    //% blockId=mqtt_res_message block="mqtt res %module message"
+    //% weight=65
+    export function linkMqtt(module: ModuleIndex) {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0xbb, 0x01);
+    }
+
+    /**
      * TODO: 物联网读数据。
      */
     //% blockId=iot_read_data block="read iot %module data"

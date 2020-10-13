@@ -371,12 +371,28 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: MQTT获取订阅消息。
+     * TODO: MQTT1获取订阅消息。
      */
-    //% blockId=mqtt_res_message block="mqtt res %module message"
+    //% blockId=mqtt1_res_message block="mqtt1 res %module message"
     //% weight=65
-    export function mqttResMessage(module: ModuleIndex) {
+    export function mqtt1ResMessage(module: ModuleIndex) {
         const text = "soil\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0xbb;
+        buf[1] = 1;
+        for (let i = 0; i < text.length; i++) {
+            buf[i + 2] = text.charCodeAt(i);
+        }
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: MQTT2获取订阅消息。
+     */
+    //% blockId=mqtt2_res_message block="mqtt2 res %module message"
+    //% weight=65
+    export function mqtt2ResMessage(module: ModuleIndex) {
+        const text = "water\r\n"
         let buf = pins.createBuffer(32);
         buf[0] = 0xbb;
         buf[1] = 1;

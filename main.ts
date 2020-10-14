@@ -541,7 +541,7 @@ namespace ovobotModules {
     /**
      * TODO: 读取压力值。
      */
-    //% blockId=read_press block="read %module press data"
+    //% blockId=read_press block="read %module press %index data"
     //% weight=65
     export function readPressData(module: ModuleIndex, index: PressIndex): number{
         pins.i2cWriteRegister(PRESS_ADDRESS + module, 0x00, 0x01);

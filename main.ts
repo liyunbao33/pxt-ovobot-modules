@@ -545,14 +545,17 @@ namespace ovobotModules {
     //% weight=65
     export function readPressData(module: ModuleIndex, index: PressIndex): number{
         pins.i2cWriteRegister(PRESS_ADDRESS + module, 0x00, 0x01);
+        let dataL;
+        let dataH;
+        let data;
         if (index == 0) {
-            let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
-            let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
-            let data = dataL+dataH*256;
+            dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+            dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+            data = dataL+dataH*256;
         } else if (index == 1) {
-            let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
-            let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
-            let data = dataL+dataH*256;
+            dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
+            dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
+            data = dataL+dataH*256;
         }
         return (data);
     }

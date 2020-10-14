@@ -31,6 +31,13 @@ enum KeyIndex {
     T4
 }
 
+enum PressIndex {
+    //% block="1"
+    T1,
+    //% block="2"
+    T2
+}
+
 enum SubIndex { 
     //% block="1"
     subModule1 = 1,
@@ -536,11 +543,17 @@ namespace ovobotModules {
      */
     //% blockId=read_press block="read %module press data"
     //% weight=65
-    export function readPressData(module: ModuleIndex): number{
+    export function readPressData(module: ModuleIndex, index: PressIndex): number{
         pins.i2cWriteRegister(PRESS_ADDRESS + module, 0x00, 0x01);
-        let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
-        let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
-        let data = dataL+dataH*256;
+        if (index == 0) {
+            let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+            let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+            let data = dataL+dataH*256;
+        } else if (index == 1) {
+            let dataL = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x03, NumberFormat.UInt8LE);
+            let dataH = pins.i2cReadRegister(PRESS_ADDRESS + module, 0x04, NumberFormat.UInt8LE);
+            let data = dataL+dataH*256;
+        }
         return (data);
     }
 

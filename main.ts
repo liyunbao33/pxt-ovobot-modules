@@ -198,9 +198,9 @@ namespace ovobotModules {
     /**
      * TODO: 连接MQTT。
      */
-    //% block="link %module mqtt"
+    //% block="link mqtt"
     //% weight=65
-    export function linkMqtt(module: ModuleIndex) {
+    export function linkMqtt() {
         pins.i2cWriteRegister(IOT_ADDRESS, 0x50, 0x01);
     }
 

@@ -249,84 +249,6 @@ namespace ovobotModules {
         pins.i2cWriteBuffer(RGB_ADDRESS, buf);
     }
 
-    // /**
-    //  * TODO: 物联网写数据。
-    //  */
-    // //% blockId=iot_write_data block="write iot %module data"
-    // //% weight=65
-    // export function iotWriteData(module: ModuleIndex) {
-    //     let buf = pins.createBuffer(66);
-    //     buf[0] = 0;
-    //     buf[1] = 1;
-    //     buf[2] = 67;
-    //     buf[3] = 104;
-    //     buf[4] = 105;
-    //     buf[5] = 110;
-    //     buf[6] = 97;
-    //     buf[7] = 78;
-    //     buf[8] = 101;
-    //     buf[9] = 116;
-    //     buf[10] = 45;
-    //     buf[11] = 56;
-    //     buf[12] = 65;
-    //     buf[13] = 49;
-    //     buf[14] = 69;
-    //     buf[15] = 50;
-    //     buf[16] = 69;
-    //     buf[17] = 0;
-    //     buf[18] = 0;
-    //     buf[19] = 0;
-    //     buf[20] = 0;
-    //     buf[21] = 0;
-    //     buf[22] = 0;
-    //     buf[23] = 0;
-    //     buf[24] = 0;
-    //     buf[25] = 0;
-    //     buf[26] = 0;
-    //     buf[27] = 0;
-    //     buf[28] = 0;
-    //     buf[29] = 0;
-    //     buf[30] = 0;
-    //     buf[31] = 0;
-    //     buf[32] = 0;
-    //     buf[33] = 0;
-    //     buf[34] = 76;
-    //     buf[35] = 74;
-    //     buf[36] = 70;
-    //     buf[37] = 50;
-    //     buf[38] = 48;
-    //     buf[39] = 50;
-    //     buf[40] = 48;
-    //     buf[41] = 56;
-    //     buf[42] = 48;
-    //     buf[43] = 55;
-    //     buf[44] = 50;
-    //     buf[45] = 48;
-    //     buf[46] = 0;
-    //     buf[47] = 0;
-    //     buf[48] = 0;
-    //     buf[49] = 0;
-    //     buf[50] = 0;
-    //     buf[51] = 0;
-    //     buf[52] = 0;
-    //     buf[53] = 0;
-    //     buf[54] = 0;
-    //     buf[55] = 0;
-    //     buf[56] = 0;
-    //     buf[57] = 0;
-    //     buf[58] = 0;
-    //     buf[59] = 0;
-    //     buf[60] = 0;
-    //     buf[61] = 0;
-    //     buf[62] = 0;
-    //     buf[63] = 0;
-    //     buf[64] = 0;
-    //     buf[65] = 0;
-
-
-    //     pins.i2cWriteBuffer(IOT_ADDRESS, buf);
-    // }
-
     /**
      * TODO: 连接WIFI。
      */
@@ -334,7 +256,7 @@ namespace ovobotModules {
     //% weight=65
     export function connectWifi() {
         const text = "ChinaNet-8A1A2E,LJF202080720"
-        let buf = pins.createBuffer(66);
+        let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
@@ -343,6 +265,24 @@ namespace ovobotModules {
         buf[text.length + 2] = 0x0d;
         buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: 语音输入。
+     */
+    //% blockId=speech_input block="speech input"
+    //% weight=65
+    export function speechInput() {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x90, 0x01);
+    }
+
+    /**
+     * TODO: 语音返回。
+     */
+    //% blockId=speech_res block="speech res"
+    //% weight=65
+    export function speechRes() {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x91, 0x01);
     }
 
     /**

@@ -328,11 +328,11 @@ namespace ovobotModules {
     // }
 
     /**
-     * TODO: 物联网写数据。
+     * TODO: 连接WIFI。
      */
-    //% blockId=iot_write_data block="write iot %module data"
+    //% blockId=connect_wifi block="connect wifi"
     //% weight=65
-    export function iotWriteData(module: ModuleIndex) {
+    export function connectWifi(module: ModuleIndex) {
         const text = "ChinaNet-8A1A2E,LJF202080720"
         let buf = pins.createBuffer(66);
         buf[0] = 0;

@@ -332,7 +332,7 @@ namespace ovobotModules {
      */
     //% blockId=connect_wifi block="connect wifi"
     //% weight=65
-    export function connectWifi(module: ModuleIndex) {
+    export function connectWifi() {
         const text = "ChinaNet-8A1A2E,LJF202080720"
         let buf = pins.createBuffer(66);
         buf[0] = 0;

@@ -126,6 +126,7 @@ namespace ovobotModules {
     const RGB_ADDRESS = 0x3C
     const PRESS_ADDRESS = 0x34
     const HOARE_ADDRESS = 0x44
+    const INF_ADDRESS = 0x28
     const LOUDNESS_ADDRESS = 0x38
     const KEY_ADDRESS = 0x30
     const lowBright = 8
@@ -484,8 +485,8 @@ namespace ovobotModules {
     //% blockId=read_inf block="read %module inf data"
     //% weight=65
     export function readInfData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(INF_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(INF_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

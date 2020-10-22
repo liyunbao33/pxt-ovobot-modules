@@ -479,6 +479,17 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: 读取红外。
+     */
+    //% blockId=read_inf block="read %module inf data"
+    //% weight=65
+    export function readInfData(module: ModuleIndex): number{
+        pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
      * TODO: 读取压力值。
      */
     //% blockId=read_press block="read %module press %index data"

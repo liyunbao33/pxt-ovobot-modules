@@ -136,6 +136,34 @@ namespace ovobotModules {
         pins.i2cWriteRegister(SONAR_ADDRESS, 0x00, 0x01);
     }
 
+    // 将字符串格式化为UTF8编码的字节
+    var writeUTF = function (str:string, isGetBytes?:boolean) {
+        var back = [];
+        var byteSize = 0;
+        for (var i = 0; i < str.length; i++) {
+            var code = str.charCodeAt(i);
+            if (0x00 <= code && code <= 0x7f) {
+                byteSize += 1;
+                back.push(code);
+            } else if (0x80 <= code && code <= 0x7ff) {
+                byteSize += 2;
+                back.push((192 | (31 & (code >> 6))));
+                back.push((128 | (63 & code)))
+            } else if ((0x800 <= code && code <= 0xd7ff) 
+                    || (0xe000 <= code && code <= 0xffff)) {
+                byteSize += 3;
+                back.push((224 | (15 & (code >> 12))));
+                back.push((128 | (63 & (code >> 6))));
+                back.push((128 | (63 & code)))
+            }
+        }
+        for (i = 0; i < back.length; i++) {
+            back[i] &= 0xff;
+        }
+        return back;
+        
+    }
+
     function constract(val: number, minVal: number, maxVal: number): number {
         if (val > maxVal) {
             return maxVal;
@@ -292,12 +320,13 @@ namespace ovobotModules {
     //% blockId=voice_out block="voice out"
     //% weight=65
     export function voiceOut() {
-        const text = "English is very good"
+        const text = "南京今天天气真好，我们一起出去玩吧"
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;
-        for (let i = 0; i < text.length; i++) {
-            buf[i + 2] = text.charCodeAt(i);
+        let utf8_buf = writeUTF(text);
+        for (let i = 0; i < utf8_buf.length; i++) {
+            buf[i + 2] = utf8_buf[i];//text.charCodeAt(i);
         }
         buf[text.length + 2] = 0x0d;
         buf[text.length + 3] = 0x0a;

@@ -292,9 +292,9 @@ namespace ovobotModules {
     //% blockId=voice_out block="voice out"
     //% weight=65
     export function voiceOut() {
-        const text = "tianqizhenhao"
-        let buf = pins.createBuffer(60);
-        buf[0] = 0x8e;
+        const text = "English is very good"
+        let buf = pins.createBuffer(256);
+        buf[0] = 0xf2;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);

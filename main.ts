@@ -294,7 +294,7 @@ namespace ovobotModules {
     export function voiceOut() {
         const text = "今天天气真好，我们一起出去玩吧"
         let buf = pins.createBuffer(60);
-        buf[0] = 0xf2;
+        buf[0] = 0x8e;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);

@@ -287,6 +287,24 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: 语音输出。
+     */
+    //% blockId=voice_out block="voice out"
+    //% weight=65
+    export function voiceOut() {
+        const text = "今天天气真好，我们一起出去玩吧"
+        let buf = pins.createBuffer(256);
+        buf[0] = 0xf2;
+        buf[1] = 1;
+        for (let i = 0; i < text.length; i++) {
+            buf[i + 2] = text.charCodeAt(i);
+        }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
      * TODO: MQTT发布消息。
      */
     //% blockId=mqtt_pub_message block="mqtt pub %module message"

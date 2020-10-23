@@ -137,11 +137,11 @@ namespace ovobotModules {
     }
 
     // 将字符串格式化为UTF8编码的字节
-    var writeUTF = function (str:string, isGetBytes?:boolean) {
-        var back = [];
-        var byteSize = 0;
-        for (var i = 0; i < str.length; i++) {
-            var code = str.charCodeAt(i);
+    let writeUTF = function (str:string, isGetBytes?:boolean) {
+        let back = [];
+        let byteSize = 0;
+        for (let i = 0; i < str.length; i++) {
+            let code = str.charCodeAt(i);
             if (0x00 <= code && code <= 0x7f) {
                 byteSize += 1;
                 back.push(code);

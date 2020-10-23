@@ -292,7 +292,7 @@ namespace ovobotModules {
     //% blockId=voice_out block="voice out"
     //% weight=65
     export function voiceOut() {
-        const text = "今天天气真好，我们一起出去玩吧"
+        const text = "tianqizhenhao"
         let buf = pins.createBuffer(60);
         buf[0] = 0x8e;
         buf[1] = 1;

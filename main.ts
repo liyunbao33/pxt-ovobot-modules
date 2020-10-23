@@ -140,6 +140,7 @@ namespace ovobotModules {
     let writeUTF = function (str:string, isGetBytes?:boolean) {
         let back = [];
         let byteSize = 0;
+        let i = 0;
         for (let i = 0; i < str.length; i++) {
             let code = str.charCodeAt(i);
             if (0x00 <= code && code <= 0x7f) {

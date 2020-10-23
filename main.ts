@@ -285,7 +285,7 @@ namespace ovobotModules {
     //% blockId=connect_wifi block="connect wifi"
     //% weight=65
     export function connectWifi() {
-        const text = "ChinaNet-8A1A2E,LJF202080720"
+        const text = "iPhone,12345678"
         let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;

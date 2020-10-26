@@ -390,13 +390,15 @@ namespace ovobotModules {
     //% blockId=mqtt_pub_message block="mqtt pub %module message"
     //% weight=65
     export function mqttPubMessage(module: ModuleIndex) {
-        const text = "soil,153\r\n"
-        let buf = pins.createBuffer(66);
-        buf[0] = 0x51;
+        const text = "soil,123"
+        let buf = pins.createBuffer(36);
+        buf[0] = 0x2c;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -406,13 +408,15 @@ namespace ovobotModules {
     //% blockId=mqtt1_sub_topic block="mqtt1 sub %module topic"
     //% weight=65
     export function mqtt1SubTopic(module: ModuleIndex) {
-        const text = "light\r\n"
-        let buf = pins.createBuffer(32);
-        buf[0] = 0x98;
+        const text = "soil"
+        let buf = pins.createBuffer(20);
+        buf[0] = 0x50;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -422,13 +426,15 @@ namespace ovobotModules {
     //% blockId=mqtt2_sub_topic block="mqtt2 sub %module topic"
     //% weight=65
     export function mqtt2SubTopic(module: ModuleIndex) {
-        const text = "water\r\n"
-        let buf = pins.createBuffer(32);
-        buf[0] = 0x98;
+        const text = "water"
+        let buf = pins.createBuffer(20);
+        buf[0] = 0x50;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -438,13 +444,15 @@ namespace ovobotModules {
     //% blockId=mqtt1_res_message block="mqtt1 res %module message"
     //% weight=65
     export function mqtt1ResMessage(module: ModuleIndex) {
-        const text = "soil\r\n"
-        let buf = pins.createBuffer(32);
-        buf[0] = 0xbb;
+        const text = "soil"
+        let buf = pins.createBuffer(20);
+        buf[0] = 0x64;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -454,35 +462,25 @@ namespace ovobotModules {
     //% blockId=mqtt2_res_message block="mqtt2 res %module message"
     //% weight=65
     export function mqtt2ResMessage(module: ModuleIndex) {
-        const text = "water\r\n"
-        let buf = pins.createBuffer(32);
-        buf[0] = 0xbb;
+        const text = "water"
+        let buf = pins.createBuffer(20);
+        buf[0] = 0x64;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
-    }
-
-    /**
-     * TODO: 物联网读数据。
-     */
-    //% blockId=iot_read_data block="read iot %module data"
-    //% weight=65
-    export function readIotData(module: ModuleIndex): number{
-        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
-        return (data);
     }
 
     /**
      * TODO: 读物联网wifi状态。
      */
-    //% blockId=read_iot_wifi_data block="read iot wifi %module data"
+    //% blockId=read_wifi_stat block="read wifi stat"
     //% weight=65
-    export function readIotWifiData(module: ModuleIndex): number{
-        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x49, NumberFormat.UInt8LE);
+    export function readWifiData(module: ModuleIndex): number{
+        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x2a, NumberFormat.UInt8LE);
         return (data);
     }
 

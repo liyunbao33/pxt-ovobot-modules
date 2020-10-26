@@ -108,6 +108,17 @@ enum Color {
     Black
 }
 
+enum VoicePerson {
+    //% block="standardFemaleVoice"
+    standardFemaleVoice,
+    //% block="standardMaleVoice"
+    standardMaleVoice,
+    //% block="magnetismMaleVoice"
+    magnetismMaleVoice,
+    //% block="standardchildVoice"
+    standardchildVoice,
+}
+
 //% color=190 weight=100 icon="\uf1ec" block="Ovobot Modules"
 namespace ovobotModules {
     const SONAR_ADDRESS = 0x52
@@ -332,6 +343,24 @@ namespace ovobotModules {
         buf[utf8_buf.length + 2] = 0x0d;
         buf[utf8_buf.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: 语音声源设置。
+     */
+    //% blockId=voice_person_set block="set %voicePerson"
+    //% weight=65
+    export function voicePersonSet(voicePerson: VoicePerson) {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0xf0, 0x01);
+        if (voicePerson == 0) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 0);
+        } else if (voicePerson == 1) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf2, 1);
+        } else if (voicePerson == 2) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf3, 3);
+        } else if (voicePerson == 3) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf4, 4);
+        }
     }
 
     /**

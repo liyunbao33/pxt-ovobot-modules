@@ -355,11 +355,11 @@ namespace ovobotModules {
         if (voicePerson == 0) {
             pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 0);
         } else if (voicePerson == 1) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf2, 1);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 1);
         } else if (voicePerson == 2) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf3, 3);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 3);
         } else if (voicePerson == 3) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf4, 4);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 4);
         }
     }
 

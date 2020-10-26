@@ -119,6 +119,13 @@ enum VoicePerson {
     standardchildVoice,
 }
 
+enum SpeechLang {
+    //% block="Chinese"
+    chinese,
+    //% block="English"
+    english,
+}
+
 //% color=190 weight=100 icon="\uf1ec" block="Ovobot Modules"
 namespace ovobotModules {
     const SONAR_ADDRESS = 0x52
@@ -242,7 +249,7 @@ namespace ovobotModules {
     //% block="link mqtt"
     //% weight=65
     export function linkMqtt() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x50, 0x01);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x2b, 0x01);
     }
 
 
@@ -361,6 +368,20 @@ namespace ovobotModules {
         } else if (voicePerson == 3) {
             pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 4);
         }
+    }
+
+    /**
+     * TODO: 语音识别语言设置。
+     */
+    //% blockId=speech_lang_set block="set %speechLang"
+    //% weight=65
+    export function speechLangSet(speechLang: SpeechLang) {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 0x01);
+        if (speechLang == 0) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8c, 0);
+        } else if (speechLang == 1) {
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8c, 1);
+        } 
     }
 
     /**

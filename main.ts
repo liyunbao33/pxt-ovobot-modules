@@ -108,24 +108,6 @@ enum Color {
     Black
 }
 
-enum VoicePerson {
-    //% block="standardFemaleVoice"
-    standardFemaleVoice,
-    //% block="standardMaleVoice"
-    standardMaleVoice,
-    //% block="magnetismMaleVoice"
-    magnetismMaleVoice,
-    //% block="standardchildVoice"
-    standardchildVoice,
-}
-
-enum SpeechLang {
-    //% block="Chinese"
-    chinese,
-    //% block="English"
-    english,
-}
-
 //% color=190 weight=100 icon="\uf1ec" block="Ovobot Modules"
 namespace ovobotModules {
     const SONAR_ADDRESS = 0x52
@@ -144,7 +126,6 @@ namespace ovobotModules {
     const RGB_ADDRESS = 0x3C
     const PRESS_ADDRESS = 0x34
     const HOARE_ADDRESS = 0x44
-    const INF_ADDRESS = 0x28
     const LOUDNESS_ADDRESS = 0x38
     const KEY_ADDRESS = 0x30
     const lowBright = 8
@@ -152,35 +133,6 @@ namespace ovobotModules {
     let tempDevEnable = [false,false,false,false]
     function sonicEnable() {
         pins.i2cWriteRegister(SONAR_ADDRESS, 0x00, 0x01);
-    }
-
-    // 将字符串格式化为UTF8编码的字节
-    let writeUTF = function (str:string, isGetBytes?:boolean) {
-        let back = [];
-        let byteSize = 0;
-        let i = 0;
-        for (let i = 0; i < str.length; i++) {
-            let code = str.charCodeAt(i);
-            if (0x00 <= code && code <= 0x7f) {
-                byteSize += 1;
-                back.push(code);
-            } else if (0x80 <= code && code <= 0x7ff) {
-                byteSize += 2;
-                back.push((192 | (31 & (code >> 6))));
-                back.push((128 | (63 & code)))
-            } else if ((0x800 <= code && code <= 0xd7ff) 
-                    || (0xe000 <= code && code <= 0xffff)) {
-                byteSize += 3;
-                back.push((224 | (15 & (code >> 12))));
-                back.push((128 | (63 & (code >> 6))));
-                back.push((128 | (63 & code)))
-            }
-        }
-        for (i = 0; i < back.length; i++) {
-            back[i] &= 0xff;
-        }
-        return back;
-        
     }
 
     function constract(val: number, minVal: number, maxVal: number): number {
@@ -246,10 +198,10 @@ namespace ovobotModules {
     /**
      * TODO: 连接MQTT。
      */
-    //% block="link mqtt"
+    //% block="link %module mqtt"
     //% weight=65
-    export function linkMqtt() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2b, 0x01);
+    export function linkMqtt(module: ModuleIndex) {
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x50, 0x01);
     }
 
 
@@ -297,14 +249,92 @@ namespace ovobotModules {
         pins.i2cWriteBuffer(RGB_ADDRESS, buf);
     }
 
+    // /**
+    //  * TODO: 物联网写数据。
+    //  */
+    // //% blockId=iot_write_data block="write iot %module data"
+    // //% weight=65
+    // export function iotWriteData(module: ModuleIndex) {
+    //     let buf = pins.createBuffer(66);
+    //     buf[0] = 0;
+    //     buf[1] = 1;
+    //     buf[2] = 67;
+    //     buf[3] = 104;
+    //     buf[4] = 105;
+    //     buf[5] = 110;
+    //     buf[6] = 97;
+    //     buf[7] = 78;
+    //     buf[8] = 101;
+    //     buf[9] = 116;
+    //     buf[10] = 45;
+    //     buf[11] = 56;
+    //     buf[12] = 65;
+    //     buf[13] = 49;
+    //     buf[14] = 69;
+    //     buf[15] = 50;
+    //     buf[16] = 69;
+    //     buf[17] = 0;
+    //     buf[18] = 0;
+    //     buf[19] = 0;
+    //     buf[20] = 0;
+    //     buf[21] = 0;
+    //     buf[22] = 0;
+    //     buf[23] = 0;
+    //     buf[24] = 0;
+    //     buf[25] = 0;
+    //     buf[26] = 0;
+    //     buf[27] = 0;
+    //     buf[28] = 0;
+    //     buf[29] = 0;
+    //     buf[30] = 0;
+    //     buf[31] = 0;
+    //     buf[32] = 0;
+    //     buf[33] = 0;
+    //     buf[34] = 76;
+    //     buf[35] = 74;
+    //     buf[36] = 70;
+    //     buf[37] = 50;
+    //     buf[38] = 48;
+    //     buf[39] = 50;
+    //     buf[40] = 48;
+    //     buf[41] = 56;
+    //     buf[42] = 48;
+    //     buf[43] = 55;
+    //     buf[44] = 50;
+    //     buf[45] = 48;
+    //     buf[46] = 0;
+    //     buf[47] = 0;
+    //     buf[48] = 0;
+    //     buf[49] = 0;
+    //     buf[50] = 0;
+    //     buf[51] = 0;
+    //     buf[52] = 0;
+    //     buf[53] = 0;
+    //     buf[54] = 0;
+    //     buf[55] = 0;
+    //     buf[56] = 0;
+    //     buf[57] = 0;
+    //     buf[58] = 0;
+    //     buf[59] = 0;
+    //     buf[60] = 0;
+    //     buf[61] = 0;
+    //     buf[62] = 0;
+    //     buf[63] = 0;
+    //     buf[64] = 0;
+    //     buf[65] = 0;
+
+
+    //     pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    // }
+
     /**
-     * TODO: 连接WIFI。
+     * TODO: 物联网写数据。
      */
-    //% blockId=connect_wifi block="connect wifi"
+    //% blockId=iot_write_data block="write iot %module data"
     //% weight=65
-    export function connectWifi() {
-        const text = "iPhone,12345678"
-        let buf = pins.createBuffer(40);
+    export function iotWriteData(module: ModuleIndex) {
+        const text = "ChinaNet-8A1A2E,LJF202080720"
+        let buf = pins.createBuffer(66);
         buf[0] = 0;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
@@ -316,89 +346,18 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 语音输入。
-     */
-    //% blockId=speech_input block="speech input"
-    //% weight=65
-    export function speechInput() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x8d, 0x01);
-    }
-
-    /**
-     * TODO: 语音返回。
-     */
-    //% blockId=speech_res block="speech res"
-    //% weight=65
-    export function speechRes() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x8e, 0x01);
-    }
-
-    /**
-     * TODO: 语音输出。
-     */
-    //% blockId=voice_out block="voice out"
-    //% weight=65
-    export function voiceOut() {
-        const text = "南京今天天气真好，我们一起出去玩吧"
-        let buf = pins.createBuffer(256);
-        buf[0] = 0xf2;
-        buf[1] = 1;
-        let utf8_buf = writeUTF(text);
-        for (let i = 0; i < utf8_buf.length; i++) {
-            buf[i + 2] = utf8_buf[i];//text.charCodeAt(i);
-        }
-        buf[utf8_buf.length + 2] = 0x0d;
-        buf[utf8_buf.length + 3] = 0x0a;
-        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
-    }
-
-    /**
-     * TODO: 语音声源设置。
-     */
-    //% blockId=voice_person_set block="set %voicePerson"
-    //% weight=65
-    export function voicePersonSet(voicePerson: VoicePerson) {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0xf0, 0x01);
-        if (voicePerson == 0) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 0);
-        } else if (voicePerson == 1) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 1);
-        } else if (voicePerson == 2) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 3);
-        } else if (voicePerson == 3) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 4);
-        }
-    }
-
-    /**
-     * TODO: 语音识别语言设置。
-     */
-    //% blockId=speech_lang_set block="set %speechLang"
-    //% weight=65
-    export function speechLangSet(speechLang: SpeechLang) {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 0x01);
-        if (speechLang == 0) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0x8c, 0);
-        } else if (speechLang == 1) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0x8c, 1);
-        } 
-    }
-
-    /**
      * TODO: MQTT发布消息。
      */
     //% blockId=mqtt_pub_message block="mqtt pub %module message"
     //% weight=65
     export function mqttPubMessage(module: ModuleIndex) {
-        const text = "soil,123"
-        let buf = pins.createBuffer(36);
-        buf[0] = 0x2c;
+        const text = "soil,153\r\n"
+        let buf = pins.createBuffer(66);
+        buf[0] = 0x51;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -408,15 +367,13 @@ namespace ovobotModules {
     //% blockId=mqtt1_sub_topic block="mqtt1 sub %module topic"
     //% weight=65
     export function mqtt1SubTopic(module: ModuleIndex) {
-        const text = "soil"
-        let buf = pins.createBuffer(20);
-        buf[0] = 0x50;
+        const text = "light\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0x98;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -426,15 +383,13 @@ namespace ovobotModules {
     //% blockId=mqtt2_sub_topic block="mqtt2 sub %module topic"
     //% weight=65
     export function mqtt2SubTopic(module: ModuleIndex) {
-        const text = "water"
-        let buf = pins.createBuffer(20);
-        buf[0] = 0x50;
+        const text = "water\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0x98;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -444,15 +399,13 @@ namespace ovobotModules {
     //% blockId=mqtt1_res_message block="mqtt1 res %module message"
     //% weight=65
     export function mqtt1ResMessage(module: ModuleIndex) {
-        const text = "soil"
-        let buf = pins.createBuffer(20);
-        buf[0] = 0x64;
+        const text = "soil\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0xbb;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
@@ -462,25 +415,35 @@ namespace ovobotModules {
     //% blockId=mqtt2_res_message block="mqtt2 res %module message"
     //% weight=65
     export function mqtt2ResMessage(module: ModuleIndex) {
-        const text = "water"
-        let buf = pins.createBuffer(20);
-        buf[0] = 0x64;
+        const text = "water\r\n"
+        let buf = pins.createBuffer(32);
+        buf[0] = 0xbb;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);
         }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: 物联网读数据。
+     */
+    //% blockId=iot_read_data block="read iot %module data"
+    //% weight=65
+    export function readIotData(module: ModuleIndex): number{
+        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
     }
 
     /**
      * TODO: 读物联网wifi状态。
      */
-    //% blockId=read_wifi_stat block="read wifi stat"
+    //% blockId=read_iot_wifi_data block="read iot wifi %module data"
     //% weight=65
-    export function readWifiData(module: ModuleIndex): number{
-        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x2a, NumberFormat.UInt8LE);
+    export function readIotWifiData(module: ModuleIndex): number{
+        // pins.i2cWriteRegister(IOT_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(IOT_ADDRESS  + module , 0x49, NumberFormat.UInt8LE);
         return (data);
     }
 
@@ -572,17 +535,6 @@ namespace ovobotModules {
     export function readHoareData(module: ModuleIndex): number{
         pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
-        return (data);
-    }
-
-    /**
-     * TODO: 读取红外。
-     */
-    //% blockId=read_inf block="read %module inf data"
-    //% weight=65
-    export function readInfData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(INF_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(INF_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
         return (data);
     }
 

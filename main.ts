@@ -367,7 +367,7 @@ namespace ovobotModules {
     //% blockId=mqtt1_sub_topic block="mqtt1 sub %module topic"
     //% weight=65
     export function mqtt1SubTopic(module: ModuleIndex) {
-        const text = "light\r\n"
+        const text = "soil\r\n"
         let buf = pins.createBuffer(32);
         buf[0] = 0x98;
         buf[1] = 1;

@@ -303,7 +303,7 @@ namespace ovobotModules {
     //% blockId=connect_wifi block="connect wifi %wndstr"
     //% weight=65
     export function connectWifi(wndstr: String) {
-        const text = wndstr
+        let text = wndstr
         let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;

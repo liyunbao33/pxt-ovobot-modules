@@ -155,7 +155,7 @@ namespace ovobotModules {
     }
 
     // 将字符串格式化为UTF8编码的字节
-    let writeUTF = function (str:string, isGetBytes?:boolean) {
+    let writeUTF = function (str:String, isGetBytes?:boolean) {
         let back = [];
         let byteSize = 0;
         let i = 0;

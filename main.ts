@@ -300,10 +300,10 @@ namespace ovobotModules {
     /**
      * TODO: 连接WIFI。
      */
-    //% blockId=connect_wifi block="connect wifi"
+    //% blockId=connect_wifi block="connect wifi %wndstr"
     //% weight=65
-    export function connectWifi() {
-        const text = "iPhone,12345678"
+    export function connectWifi(wndstr: String) {
+        const text = wndstr
         let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;
@@ -336,10 +336,10 @@ namespace ovobotModules {
     /**
      * TODO: 语音输出。
      */
-    //% blockId=voice_out block="voice out"
+    //% blockId=voice_out block="voice out %sndstr"
     //% weight=65
-    export function voiceOut() {
-        const text = "南京今天天气真好，我们一起出去玩吧"
+    export function voiceOut(sndstr: String) {
+        const text = sndstr
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;

@@ -361,12 +361,12 @@ namespace ovobotModules {
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;
-        buf[2] = 2; 
-        buf[3] = 3;
-        buf[4] = 4;
-        buf[5] = 5;
-        buf[6] = 6;
-        buf[7] = 7;
+        buf[2] = 0xE4; 
+        buf[3] = 0xBD;
+        buf[4] = 0xA0;
+        buf[5] = 0xE5;
+        buf[6] = 0xA5;
+        buf[7] = 0xBD;
         buf[8] = 0x0D;
         buf[9] = 0x0A;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);

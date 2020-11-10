@@ -355,10 +355,9 @@ namespace ovobotModules {
      /**
      * TODO: 语音输出。
      */
-    //% blockId=voice_out block="voice out %sndstr"
+    //% blockId=voice_out block="voice out"
     //% weight=65
-    export function voiceOut(sndstr: String) {
-        let text = sndstr
+    export function voiceOut() {
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;

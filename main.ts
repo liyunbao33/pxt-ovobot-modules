@@ -333,45 +333,45 @@ namespace ovobotModules {
         pins.i2cWriteRegister(IOT_ADDRESS, 0x8e, 0x01);
     }
 
-    // /**
-    //  * TODO: 语音输出。
-    //  */
-    // //% blockId=voice_out block="voice out %sndstr"
-    // //% weight=65
-    // export function voiceOut(sndstr: String) {
-    //     let text = sndstr
-    //     let buf = pins.createBuffer(256);
-    //     buf[0] = 0xf2;
-    //     buf[1] = 1;
-    //     let utf8_buf = writeUTF(text);
-    //     for (let i = 0; i < utf8_buf.length; i++) {
-    //         buf[i + 2] = utf8_buf[i];//text.charCodeAt(i);
-    //     }
-    //     buf[utf8_buf.length + 2] = 0x0d;
-    //     buf[utf8_buf.length + 3] = 0x0a;
-    //     pins.i2cWriteBuffer(IOT_ADDRESS, buf);
-    // }
-
-     /**
+    /**
      * TODO: 语音输出。
      */
     //% blockId=voice_out block="voice out"
     //% weight=65
     export function voiceOut() {
+        let text = "南京今天天气真好，我们一起出去玩把，去装机械臂"
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;
-        buf[2] = 2; 
-        buf[3] = 0xE4; 
-        buf[4] = 0xBD;
-        buf[5] = 0xA0;
-        buf[6] = 0xE5;
-        buf[7] = 0xA5;
-        buf[8] = 0xBD;
-        buf[9] = 0x0D;
-        buf[10] = 0x0A;
+        let utf8_buf = writeUTF(text);
+        for (let i = 0; i < utf8_buf.length; i++) {
+            buf[i + 2] = utf8_buf[i];//text.charCodeAt(i);
+        }
+        buf[utf8_buf.length + 2] = 0x0d;
+        buf[utf8_buf.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
+
+    //  /**
+    //  * TODO: 语音输出。
+    //  */
+    // //% blockId=voice_out block="voice out"
+    // //% weight=65
+    // export function voiceOut() {
+    //     let buf = pins.createBuffer(256);
+    //     buf[0] = 0xf2;
+    //     buf[1] = 1;
+    //     buf[2] = 2; 
+    //     buf[3] = 0xE4; 
+    //     buf[4] = 0xBD;
+    //     buf[5] = 0xA0;
+    //     buf[6] = 0xE5;
+    //     buf[7] = 0xA5;
+    //     buf[8] = 0xBD;
+    //     buf[9] = 0x0D;
+    //     buf[10] = 0x0A;
+    //     pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    // }
 
     /**
      * TODO: 语音声源设置。

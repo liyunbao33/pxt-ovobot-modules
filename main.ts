@@ -340,8 +340,8 @@ namespace ovobotModules {
     //% weight=65
     export function voiceOut() {
         let text = "今天真好看"
-        let buf = pins.createBuffer(256);
-        buf[0] = 0xf2;
+        let buf = pins.createBuffer(80);
+        buf[0] = 0x10;
         buf[1] = 1;
         let utf8_buf = writeUTF(text);
         for (let i = 0; i < utf8_buf.length; i++) {

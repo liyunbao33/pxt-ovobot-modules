@@ -339,7 +339,7 @@ namespace ovobotModules {
     //% blockId=voice_out block="voice out"
     //% weight=65
     export function voiceOut() {
-        let text = "今天天气真好"
+        let text = "今天天气"
         let buf = pins.createBuffer(256);
         buf[0] = 0xf2;
         buf[1] = 1;

@@ -340,16 +340,12 @@ namespace ovobotModules {
     //% weight=65
     export function voiceOut(sndstr: String) {
         let text = sndstr;
-        let buf = pins.createBuffer(80);
-        buf[0] = 0;
         let utf8_buf = writeUTF(text);
-        for (let i = 0; i < utf8_buf.length; i++) {
-            buf[i + 1] = utf8_buf[i];//text.charCodeAt(i);
+        for (let i = 1; i <= utf8_buf.length; i++) {
+            pins.i2cWriteRegister(IOT_ADDRESS, i, utf8_buf[i]);
         }
-        buf[utf8_buf.length + 1] = 0x0d;
-        buf[utf8_buf.length + 2] = 0x0a;
-        buf[51] = 1;
-        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length+1, 0x0d);
+        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length=2, 0x0a);
     }
 
     //  /**

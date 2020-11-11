@@ -341,11 +341,12 @@ namespace ovobotModules {
     export function voiceOut(sndstr: String) {
         let text = sndstr;
         let utf8_buf = writeUTF(text);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x00, 0x01);
         for (let i = 1; i <= utf8_buf.length; i++) {
             pins.i2cWriteRegister(IOT_ADDRESS, i, utf8_buf[i]);
         }
         pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length+1, 0x0d);
-        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length=2, 0x0a);
+        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length+2, 0x0a);
     }
 
     //  /**

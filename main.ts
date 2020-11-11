@@ -303,7 +303,7 @@ namespace ovobotModules {
     //% blockId=connect_wifi block="connect wifi %wndstr"
     //% weight=65
     export function connectWifi(wndstr: String) {
-        let text = wndstr
+        let text = wndstr;
         let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;
@@ -336,10 +336,10 @@ namespace ovobotModules {
     /**
      * TODO: 语音输出。
      */
-    //% blockId=voice_out block="voice out"
+    //% blockId=voice_out block="voice out %sndstr"
     //% weight=65
-    export function voiceOut() {
-        let text = "好你"
+    export function voiceOut(sndstr: String) {
+        const text = sndstr;
         let buf = pins.createBuffer(80);
         buf[0] = 0x10;
         buf[1] = 1;

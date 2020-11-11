@@ -341,7 +341,7 @@ namespace ovobotModules {
     export function voiceOut(sndstr: String) {
         let text = sndstr;
         let buf = pins.createBuffer(80);
-        buf[0] = 0x10;
+        buf[0] = 0;
         buf[1] = 1;
         let utf8_buf = writeUTF(text);
         for (let i = 0; i < utf8_buf.length; i++) {

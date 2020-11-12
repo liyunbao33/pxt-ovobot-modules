@@ -321,7 +321,7 @@ namespace ovobotModules {
     //% blockId=speech_input block="speech input"
     //% weight=65
     export function speechInput() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2d, 0x01);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x8d, 0x01);
     }
 
     /**
@@ -330,7 +330,7 @@ namespace ovobotModules {
     //% blockId=speech_res block="speech res"
     //% weight=65
     export function speechRes() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2e, 0x01);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x8e, 0x01);
     }
 
     /**
@@ -340,13 +340,16 @@ namespace ovobotModules {
     //% weight=65
     export function voiceOut(sndstr: String) {
         let text = sndstr;
+        let buf = pins.createBuffer(100);
+        buf[0] = 0;
+        buf[1] = 0x8c;
         let utf8_buf = writeUTF(text);
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x00, 0x01);
-        for (let i = 1; i <= utf8_buf.length; i++) {
-            pins.i2cWriteRegister(IOT_ADDRESS, i, utf8_buf[i]);
+        for (let i = 0; i < utf8_buf.length; i++) {
+            buf[i + 1] = utf8_buf[i];//text.charCodeAt(i);
         }
-        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length+1, 0x0d);
-        pins.i2cWriteRegister(IOT_ADDRESS, utf8_buf.length+2, 0x0a);
+        buf[utf8_buf.length + 1] = 0x0d;
+        buf[utf8_buf.length + 2] = 0x0a;
+        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 
     //  /**

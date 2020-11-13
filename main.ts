@@ -345,10 +345,10 @@ namespace ovobotModules {
         buf[1] = 1;
         let utf8_buf = writeUTF(text);
         for (let i = 0; i < utf8_buf.length; i++) {
-            buf[i + 1] = utf8_buf[i];//text.charCodeAt(i);
+            buf[i + 2] = utf8_buf[i];//text.charCodeAt(i);
         }
-        buf[utf8_buf.length + 1] = 0x0d;
-        buf[utf8_buf.length + 2] = 0x0a;
+        buf[utf8_buf.length + 2] = 0x0d;
+        buf[utf8_buf.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
     }
 

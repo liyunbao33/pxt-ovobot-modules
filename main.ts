@@ -249,7 +249,7 @@ namespace ovobotModules {
     //% block="link mqtt"
     //% weight=65
     export function linkMqtt() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2b, 0x01);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x50, 0x01);
     }
 
 

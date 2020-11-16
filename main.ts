@@ -437,7 +437,7 @@ namespace ovobotModules {
      */
     //% blockId=mqtt1_sub_topic block="mqtt1 sub %substr"
     //% weight=65
-    export function mqtt1SubTopic(snsubstrdstr: String) {
+    export function mqtt1SubTopic(substr: String) {
         const text = substr
         let buf = pins.createBuffer(20);
         buf[0] = 0x50;

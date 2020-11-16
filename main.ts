@@ -433,30 +433,12 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: MQTT1订阅消息。
+     * TODO: MQTT订阅消息。
      */
-    //% blockId=mqtt1_sub_topic block="mqtt1 sub %module topic"
+    //% blockId=mqtt1_sub_topic block="mqtt1 sub %substr"
     //% weight=65
-    export function mqtt1SubTopic(module: ModuleIndex) {
-        const text = "soil"
-        let buf = pins.createBuffer(20);
-        buf[0] = 0x50;
-        buf[1] = 1;
-        for (let i = 0; i < text.length; i++) {
-            buf[i + 2] = text.charCodeAt(i);
-        }
-        buf[text.length + 2] = 0x0d;
-        buf[text.length + 3] = 0x0a;
-        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
-    }
-
-    /**
-     * TODO: MQTT2订阅消息。
-     */
-    //% blockId=mqtt2_sub_topic block="mqtt2 sub %module topic"
-    //% weight=65
-    export function mqtt2SubTopic(module: ModuleIndex) {
-        const text = "water"
+    export function mqtt1SubTopic(snsubstrdstr: String) {
+        const text = substr
         let buf = pins.createBuffer(20);
         buf[0] = 0x50;
         buf[1] = 1;

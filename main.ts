@@ -435,12 +435,12 @@ namespace ovobotModules {
     /**
      * TODO: MQTT订阅消息。
      */
-    //% blockId=mqtt1_sub_topic block="mqtt1 sub %substr"
+    //% blockId=mqtt_sub_topic block="mqtt sub %substr"
     //% weight=65
-    export function mqtt1SubTopic(substr: String) {
+    export function mqttSubTopic(substr: String) {
         const text = substr
         let buf = pins.createBuffer(20);
-        buf[0] = 0x50;
+        buf[0] = 0x98;
         buf[1] = 1;
         for (let i = 0; i < text.length; i++) {
             buf[i + 2] = text.charCodeAt(i);

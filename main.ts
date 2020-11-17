@@ -138,6 +138,7 @@ namespace ovobotModules {
     const TEMP_ADDRESS = 0x5c
     const IOT_ADDRESS = 0x50
     const PM_ADDRESS = 0x60
+    const SPEECH_ADDRESS = 0x68
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40
@@ -298,12 +299,12 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 连接WIFI。
+     * TODO: IOT连接WIFI。
      */
-    //% blockId=connect_wifi block="connect wifi %wndstr"
+    //% blockId=iot_connect_wifi block="iot connect wifi %iotstr"
     //% weight=65
-    export function connectWifi(wndstr: String) {
-        let text = wndstr;
+    export function iotConnectWifi(iotstr: String) {
+        let text = iotstr;
         let buf = pins.createBuffer(40);
         buf[0] = 0;
         buf[1] = 1;
@@ -313,6 +314,24 @@ namespace ovobotModules {
         buf[text.length + 2] = 0x0d;
         buf[text.length + 3] = 0x0a;
         pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+    }
+
+    /**
+     * TODO: 语音连接WIFI。
+     */
+    //% blockId=speech_connect_wifi block="speech connect wifi %speechstr"
+    //% weight=65
+    export function speechConnectWifi(speechstr: String) {
+        let text = speechstr;
+        let buf = pins.createBuffer(40);
+        buf[0] = 0;
+        buf[1] = 1;
+        for (let i = 0; i < text.length; i++) {
+            buf[i + 2] = text.charCodeAt(i);
+        }
+        buf[text.length + 2] = 0x0d;
+        buf[text.length + 3] = 0x0a;
+        pins.i2cWriteBuffer(SPEECH_ADDRESS, buf);
     }
 
     /**
@@ -358,7 +377,7 @@ namespace ovobotModules {
         }
         buf[utf8_buf.length + 2] = 0x0d;
         buf[utf8_buf.length + 3] = 0x0a;
-        pins.i2cWriteBuffer(IOT_ADDRESS, buf);
+        pins.i2cWriteBuffer(SPEECH_ADDRESS, buf);
     }
 
     //  /**

@@ -138,7 +138,7 @@ namespace ovobotModules {
     const TEMP_ADDRESS = 0x5c
     const IOT_ADDRESS = 0x50
     const PM_ADDRESS = 0x60
-    const SPEECH_ADDRESS = 0x68
+    const SPEECH_ADDRESS = 0x69
     const SOIL_ADDRESS = 0x48
     const LINE_ADDRESS = 0x51
     const COLOR_ADDRESS = 0x40

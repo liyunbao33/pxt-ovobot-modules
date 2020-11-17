@@ -340,7 +340,7 @@ namespace ovobotModules {
     //% blockId=speech_input block="speech input"
     //% weight=65
     export function speechInput() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2d, 0x01);
+        pins.i2cWriteRegister(SPEECH_ADDRESS, 0x2d, 0x01);
     }
 
     /**
@@ -358,7 +358,7 @@ namespace ovobotModules {
     //% blockId=speech_res block="speech res"
     //% weight=65
     export function speechRes() {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0x2e, 0x01);
+        pins.i2cWriteRegister(SPEECH_ADDRESS, 0x2e, 0x01);
     }
 
     /**

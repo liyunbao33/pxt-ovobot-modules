@@ -613,7 +613,6 @@ namespace ovobotModules {
     //% blockId=read_iot_ota_progress block="read iot ota progress data"
     //% weight=65
     export function readIotOtaProgressData(): number{
-        pins.i2cWriteRegister(HOARE_ADDRESS , 0x47, 0x01);
         let data = pins.i2cReadRegister(IOT_ADDRESS, 0x48, NumberFormat.UInt8LE);
         return (data);
     }

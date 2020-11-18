@@ -407,15 +407,15 @@ namespace ovobotModules {
     //% blockId=voice_person_set block="set %voicePerson"
     //% weight=65
     export function voicePersonSet(voicePerson: VoicePerson) {
-        pins.i2cWriteRegister(IOT_ADDRESS, 0xf0, 0x01);
+        pins.i2cWriteRegister(IOT_ADDRESS, 0x8a, 0x01);
         if (voicePerson == 0) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 0);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 0);
         } else if (voicePerson == 1) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 1);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 1);
         } else if (voicePerson == 2) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 3);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 3);
         } else if (voicePerson == 3) {
-            pins.i2cWriteRegister(IOT_ADDRESS, 0xf1, 4);
+            pins.i2cWriteRegister(IOT_ADDRESS, 0x8b, 4);
         }
     }
 
@@ -603,6 +603,17 @@ namespace ovobotModules {
     export function readHoareData(module: ModuleIndex): number{
         pins.i2cWriteRegister(HOARE_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(HOARE_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+
+    /**
+     * TODO: 读取iot_ota进度。
+     */
+    //% blockId=read_iot_ota_progress block="read iot ota progress data"
+    //% weight=65
+    export function readIotOtaProgressData(): number{
+        let data = pins.i2cReadRegister(IOT_ADDRESS, 0xFF, NumberFormat.UInt8LE);
         return (data);
     }
 

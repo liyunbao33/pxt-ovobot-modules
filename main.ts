@@ -602,7 +602,7 @@ namespace ovobotModules {
     //% weight=65
     export function readKeypadData(module: ModuleIndex): number{
         // pins.i2cWriteRegister(SEG_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(SEG_ADDRESS  + module , 0x00, NumberFormat.UInt8LE);
+        let data = pins.i2cReadRegister(SEG_ADDRESS  + module , 0x05, NumberFormat.UInt8LE);
         return (data);
     }
 

@@ -596,6 +596,16 @@ namespace ovobotModules {
     }
 
     /**
+     * TODO: 读取手柄。
+     */
+    //% blockId=read_keypad block="read keypad data"
+    //% weight=65
+    export function readKeypadData(): number{
+        let data = pins.i2cReadRegister(SEG_ADDRESS, 0x00, NumberFormat.UInt8LE);
+        return (data);
+    }
+
+    /**
      * TODO: 读取霍尔。
      */
     //% blockId=read_hoare block="read %module hoare data"

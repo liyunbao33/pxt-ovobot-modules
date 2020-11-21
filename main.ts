@@ -596,7 +596,7 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 读取手柄。
+     * TODO: 读取手柄值。
      */
     //% blockId=read_keypad block="read %module keypad data"
     //% weight=65

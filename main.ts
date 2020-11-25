@@ -352,6 +352,15 @@ namespace ovobotModules {
         pins.i2cWriteRegister(IOT_ADDRESS, 0x00, 0xFF);
     }
 
+     /**
+     * TODO: 语音OTA升级。
+     */
+    //% blockId=speech_ota_update block="speech ota update"
+    //% weight=65
+    export function speechOtaUpdate() {
+        pins.i2cWriteRegister(SPEECH_ADDRESS, 0x00, 0xFF);
+    }
+
     /**
      * TODO: 语音返回。
      */

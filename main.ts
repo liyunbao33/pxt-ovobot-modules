@@ -636,7 +636,7 @@ namespace ovobotModules {
     //% weight=65
     export function readLedDisplayTempData(module: ModuleIndex): number{
         pins.i2cWriteRegister(LED_DISPLAY_TEMP_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(LED_DISPLAY_TEMP_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        let data = pins.i2cReadRegister(LED_DISPLAY_TEMP_ADDRESS  + module , 0x05, NumberFormat.UInt8LE);
         return (data);
     }
 

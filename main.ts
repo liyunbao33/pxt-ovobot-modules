@@ -147,10 +147,13 @@ namespace ovobotModules {
     const HOARE_ADDRESS = 0x44
     const INF_ADDRESS = 0x28
     const LOUDNESS_ADDRESS = 0x38
+    const LED_DISPLAY_TEMP_ADDRESS = 0x2C
     const KEY_ADDRESS = 0x30
     const lowBright = 8
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
-    let tempDevEnable = [false,false,false,false]
+    let tempDevEnable = [false, false, false, false]
+    let neopixelBuf = pins.createBuffer(14);
+
     function sonicEnable() {
         pins.i2cWriteRegister(SONAR_ADDRESS, 0x00, 0x01);
     }
@@ -278,24 +281,23 @@ namespace ovobotModules {
     //% blockId=control_leds_output block="control neopixels %index color %color"
     //% weight=65
     export function controlNeopixels(index: LedIndex, color: Color) { 
-        let buf = pins.createBuffer(14);
         let startPos;
 
-        buf[0] = 0;
-        buf[1] = 1;
+        neopixelBuf[0] = 0;
+        neopixelBuf[1] = 1;
         if (index == 0) {
             for (let i = 2; i < 12; i += 3) {
-                buf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
-                buf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
-                buf[i + 2] = (selectColors[color] & 0xff) / lowBright;
+                neopixelBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+                neopixelBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+                neopixelBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;
             }
         } else { 
             startPos = 2 + 3 * (index-1);
-            buf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
-            buf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
-            buf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
+            neopixelBuf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+            neopixelBuf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+            neopixelBuf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
         }
-        pins.i2cWriteBuffer(RGB_ADDRESS, buf);
+        pins.i2cWriteBuffer(RGB_ADDRESS, neopixelBuf);
     }
 
     /**
@@ -626,6 +628,17 @@ namespace ovobotModules {
         return (data);
     }
 
+
+    /**
+     * TODO: 读取数码管&温湿度。
+     */
+    //% blockId=read_led_display_temp block="read %module led display temp data"
+    //% weight=65
+    export function readLedDisplayTempData(module: ModuleIndex): number{
+        pins.i2cWriteRegister(LED_DISPLAY_TEMP_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(LED_DISPLAY_TEMP_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        return (data);
+    }
 
     /**
      * TODO: 读取iot_ota进度。

@@ -87,6 +87,36 @@ enum LedIndex {
     // L12  
 }
 
+enum TouchLedIndex {
+    //% block="all"
+    All,
+    //% block="1"
+    L1,
+    //% block="2"
+    L2,
+    //% block="3"
+    L3,
+    //% block="4"
+    L4,
+    //% block="5"
+    L5,
+    //% block="6"
+    L6,
+    // //% block="7"
+    // L7,
+    // //% block="8"
+    // L8,
+    // //% block="9"
+    // L9,
+    // //% block="10"
+    // L10,
+    // //% block="11"
+    // L11,
+    // //% block="12"
+    // L12  
+}
+
+
 enum Color {
     //% block="red"
     Red,
@@ -572,6 +602,31 @@ namespace ovobotModules {
             data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x14, NumberFormat.UInt8LE);
         }
         return (data);
+    }
+
+    /**
+     * TODO: 控制触摸RGB灯条。
+     */
+    //% blockId=control_touch_leds_output block="control touch leds %index color %color"
+    //% weight=65
+    export function controlTouchLeds(index: TouchLedIndex, color: Color) { 
+        let startPos;
+        let ledBuf = pins.createBuffer(20);
+        ledBuf[0] = 0;
+        ledBuf[1] = 1;
+        if (index == 0) {
+            for (let i = 2; i < 12; i += 3) {
+                ledBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+                ledBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+                ledBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;
+            }
+        } else { 
+            startPos = 2 + 3 * (index-1);
+            ledBuf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+            ledBuf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+            ledBuf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
+        }
+        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, ledBuf);
     }
 
     /**

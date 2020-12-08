@@ -597,9 +597,9 @@ namespace ovobotModules {
         pins.i2cWriteRegister(RGB_TOUCHKEY_ADDRESS, 0x00, 0x01);
         let data;
         if (index == 0) {
-            data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x13, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x19, NumberFormat.UInt8LE);
         } else {
-            data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x14, NumberFormat.UInt8LE);
+            data = pins.i2cReadRegister(RGB_TOUCHKEY_ADDRESS + module, 0x1A, NumberFormat.UInt8LE);
         }
         return (data);
     }

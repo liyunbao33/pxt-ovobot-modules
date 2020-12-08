@@ -102,10 +102,10 @@ enum TouchLedIndex {
     L5,
     //% block="6"
     L6,
-    // //% block="7"
-    // L7,
-    // //% block="8"
-    // L8,
+    //% block="7"
+    L7,
+    //% block="8"
+    L8,
     // //% block="9"
     // L9,
     // //% block="10"
@@ -611,7 +611,7 @@ namespace ovobotModules {
     //% weight=65
     export function controlTouchLeds(index: TouchLedIndex, color: Color) { 
         let startPos;
-        let ledBuf = pins.createBuffer(20);
+        let ledBuf = pins.createBuffer(26);
         ledBuf[0] = 0;
         ledBuf[1] = 1;
         if (index == 0) {

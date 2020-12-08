@@ -615,7 +615,7 @@ namespace ovobotModules {
         ledBuf[0] = 0;
         ledBuf[1] = 1;
         if (index == 0) {
-            for (let i = 2; i < 12; i += 3) {
+            for (let i = 2; i < 24; i += 3) {
                 ledBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
                 ledBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
                 ledBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;

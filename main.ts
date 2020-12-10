@@ -183,7 +183,7 @@ namespace ovobotModules {
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false, false, false, false]
     let neopixelBuf = pins.createBuffer(14);
-
+    let neopixeBuf = pins.createBuffer(26);
     function sonicEnable() {
         pins.i2cWriteRegister(SONAR_ADDRESS, 0x00, 0x01);
     }
@@ -611,22 +611,22 @@ namespace ovobotModules {
     //% weight=65
     export function controlTouchLeds(index: TouchLedIndex, color: Color) { 
         let startPos;
-        let ledBuf = pins.createBuffer(26);
-        ledBuf[0] = 0;
-        ledBuf[1] = 1;
+        //let ledBuf = pins.createBuffer(26);
+        neopixeBuf[0] = 0;
+        neopixeBuf[1] = 1;
         if (index == 0) {
             for (let i = 2; i < 24; i += 3) {
-                ledBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
-                ledBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
-                ledBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;
+                neopixeBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+                neopixeBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+                neopixeBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;
             }
         } else { 
             startPos = 2 + 3 * (index-1);
-            ledBuf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
-            ledBuf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
-            ledBuf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
+            neopixeBuf[startPos] = ((selectColors[color] >> 8) & 0xff) / lowBright;
+            neopixeBuf[startPos + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
+            neopixeBuf[startPos + 2] = (selectColors[color] & 0xff) / lowBright;
         }
-        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, ledBuf);
+        pins.i2cWriteBuffer(RGB_TOUCHKEY_ADDRESS, neopixeBuf);
     }
 
     /**

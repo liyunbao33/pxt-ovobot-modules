@@ -102,10 +102,10 @@ enum TouchLedIndex {
     L5,
     //% block="6"
     L6,
-    // //% block="7"
-    // L7,
-    // //% block="8"
-    // L8,
+    //% block="7"
+    L7,
+    //% block="8"
+    L8,
     // //% block="9"
     // L9,
     // //% block="10"
@@ -183,7 +183,7 @@ namespace ovobotModules {
     const selectColors = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x00ffff, 0x0000ff, 0x800080, 0xffffff, 0x000000]
     let tempDevEnable = [false, false, false, false]
     let neopixelBuf = pins.createBuffer(14);
-    let neopixeBuf = pins.createBuffer(20);
+    let neopixeBuf = pins.createBuffer(26);
     function sonicEnable() {
         pins.i2cWriteRegister(SONAR_ADDRESS, 0x00, 0x01);
     }
@@ -615,7 +615,7 @@ namespace ovobotModules {
         neopixeBuf[0] = 0;
         neopixeBuf[1] = 1;
         if (index == 0) {
-            for (let i = 2; i < 18; i += 3) {
+            for (let i = 2; i < 24; i += 3) {
                 neopixeBuf[i] = ((selectColors[color] >> 8) & 0xff) / lowBright;
                 neopixeBuf[i + 1] = ((selectColors[color] >> 16) & 0xff) / lowBright;
                 neopixeBuf[i + 2] = (selectColors[color] & 0xff) / lowBright;

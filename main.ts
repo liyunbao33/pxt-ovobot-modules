@@ -790,7 +790,7 @@ namespace ovobotModules {
     export function readPmData(module: ModuleIndex): number{
         pins.i2cWriteRegister(PM_ADDRESS + module, 0x00, 0x01);
         let data = pins.i2cReadRegister(PM_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
-        return (255 - data);
+        return (100 - data);
     }
 
     /**

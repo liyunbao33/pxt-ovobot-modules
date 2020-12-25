@@ -789,7 +789,9 @@ namespace ovobotModules {
     //% weight=65
     export function readSoilData(module: ModuleIndex): number{ 
         pins.i2cWriteRegister(SOIL_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(SOIL_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        let data1 = pins.i2cReadRegister(SOIL_ADDRESS + module, 0x01, NumberFormat.UInt8LE);
+        let data2 = pins.i2cReadRegister(SOIL_ADDRESS + module, 0x02, NumberFormat.UInt8LE);
+        let data = data1+data2*256;
         return (data);
     }
 

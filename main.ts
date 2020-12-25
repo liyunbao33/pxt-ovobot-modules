@@ -688,8 +688,8 @@ namespace ovobotModules {
     //% blockId=read_led_display_temp block="read %module led display temp data"
     //% weight=65
     export function readLedDisplayTempData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(LED_DISPLAY_TEMP_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(LED_DISPLAY_TEMP_ADDRESS  + module , 0x05, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(SEG_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(SEG_ADDRESS  + module , 0x05, NumberFormat.UInt8LE);
         return (data);
     }
 
@@ -767,7 +767,6 @@ namespace ovobotModules {
         } else if (measure == 1) {
             return humidityValue;
         } 
-        return 9999;
     }
 
     /**

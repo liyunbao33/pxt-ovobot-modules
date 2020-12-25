@@ -754,7 +754,7 @@ namespace ovobotModules {
     //% weight=65
 
     export function readTempOrHumidity(module: ModuleIndex, measure: MesureContent): number{
-        let buf = pins.createBuffer(6);
+        let buf = pins.createBuffer(8);
         let onboardTempValue = 400;
         let humidityValue;
         let address = TEMP_ADDRESS + module;

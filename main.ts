@@ -706,7 +706,7 @@ namespace ovobotModules {
     /**
      * TODO: 读取红外。
      */
-    //% blockId=read_inf block="read %module inf data"
+    //% blockId=read_inf block="read %module infd data"
     //% weight=65
     export function readInfData(module: ModuleIndex): number{
         pins.i2cWriteRegister(INF_ADDRESS + module, 0x00, 0x01);

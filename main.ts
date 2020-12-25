@@ -54,8 +54,6 @@ enum MesureContent {
     TempOnBoard,
     //% block="onboard humidity"
     HmOnBoard,
-    //% block="extend temp"
-    TempOffBoard
 }
 
 enum LedIndex {
@@ -758,27 +756,19 @@ namespace ovobotModules {
     export function readTempOrHumidity(module: ModuleIndex, measure: MesureContent): number{
         let buf = pins.createBuffer(6);
         let onboardTempValue = 400;
-        let extendTempValue;
         let humidityValue;
         let address = TEMP_ADDRESS + module;
-        if (!tempDevEnable[module]) {
-            tempEnable(address, module);
-            return 9999;
-        } else { 
-            pins.i2cWriteRegister(address, 0x00, 0x01);
-            let res = pins.i2cReadBuffer(address, 6);//Buffer
-            onboardTempValue = -450 + 1750 * (res[0] << 8 | res[1]) / 65535;
-            humidityValue = 100 * (res[2] << 8 | res[3]) / 65535;
-            extendTempValue = (res[5] << 8 | res[4]) * 10 / 16.0;
-            if (measure == 0) {
-                return onboardTempValue * 0.1;
-            } else if (measure == 1) {
-                return humidityValue;
-            } else if (measure == 2) { 
-                return extendTempValue * 0.1;
-            }
-            return 9999;
-        }
+        pins.i2cWriteRegister(address, 0x00, 0x01);
+        let res = pins.i2cReadBuffer(address, 8);//Buffer
+        onboardTempValue = -450 + 1750 * (res[5] << 8 | res[6]) / 65535;
+        humidityValue = 100 * (res[7] << 8 | res[8]) / 65535;
+        extendTempValue = (res[5] << 8 | res[4]) * 10 / 16.0;
+        if (measure == 0) {
+            return onboardTempValue * 0.1;
+        } else if (measure == 1) {
+            return humidityValue;
+        } 
+        return 9999;
     }
 
     /**

@@ -767,6 +767,7 @@ namespace ovobotModules {
         } else if (measure == 1) {
             return humidityValue;
         } 
+        return 9999;
     }
 
     /**

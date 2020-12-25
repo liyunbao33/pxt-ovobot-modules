@@ -762,7 +762,6 @@ namespace ovobotModules {
         let res = pins.i2cReadBuffer(address, 8);//Buffer
         onboardTempValue = -450 + 1750 * (res[5] << 8 | res[6]) / 65535;
         humidityValue = 100 * (res[7] << 8 | res[8]) / 65535;
-        extendTempValue = (res[5] << 8 | res[4]) * 10 / 16.0;
         if (measure == 0) {
             return onboardTempValue * 0.1;
         } else if (measure == 1) {

@@ -255,7 +255,7 @@ namespace ovobotModules {
         sonicEnable();
 
         let sonarVal = pins.i2cReadRegister(SONAR_ADDRESS, 0x01, NumberFormat.Int16LE);
-        let distance = sonarVal / 29;
+        let distance = sonarVal / 58;
 
         return distance;
     }

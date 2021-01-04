@@ -742,8 +742,8 @@ namespace ovobotModules {
     //% blockId=read_loudness block="read %module loudness data"
     //% weight=65
     export function readLoudnessData(module: ModuleIndex): number{
-        pins.i2cWriteRegister(LOUDNESS_ADDRESS + module, 0x00, 0x01);
-        let data = pins.i2cReadRegister(LOUDNESS_ADDRESS  + module , 0x01, NumberFormat.UInt8LE);
+        pins.i2cWriteRegister(SONAR_ADDRESS + module, 0x00, 0x01);
+        let data = pins.i2cReadRegister(SONAR_ADDRESS  + module , 0x03, NumberFormat.UInt8LE);
         return (data);
     }
 

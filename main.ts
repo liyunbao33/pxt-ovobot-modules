@@ -748,7 +748,7 @@ namespace ovobotModules {
     }
 
     /**
-     * TODO: 读取温湿度。
+     * TODO: 读取数温湿度。
      */
     //% blockId=read_temp_humidity block="read %module  %measure data"
     //% weight=65

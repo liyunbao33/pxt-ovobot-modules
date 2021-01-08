@@ -754,14 +754,16 @@ namespace ovobotModules {
     //% weight=65
 
     export function readTempOrHumidity(module: ModuleIndex, measure: MesureContent): number{
-        let buf = pins.createBuffer(8);
         let onboardTempValue = 400;
         let humidityValue;
-        let address = TEMP_ADDRESS + module;
         pins.i2cWriteRegister(address, 0x00, 0x01);
-        let res = pins.i2cReadBuffer(address, 8);//Buffer
-        onboardTempValue = -450 + 1750 * (res[5] << 8 | res[6]) / 65535;
-        humidityValue = 100 * (res[7] << 8 | res[8]) / 65535;
+        // let res = pins.i2cReadBuffer(address, 8);//Buffer
+        let data1 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x05, NumberFormat.UInt8LE);
+        let data2 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x06, NumberFormat.UInt8LE);
+        let data3 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x07, NumberFormat.UInt8LE);
+        let data4 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x08, NumberFormat.UInt8LE);
+        onboardTempValue = -450 + 1750 * (data1 << 8 | data2) / 65535;
+        humidityValue = 100 * (data3 << 8 | data4) / 65535;
         if (measure == 0) {
             return onboardTempValue * 0.1;
         } else if (measure == 1) {

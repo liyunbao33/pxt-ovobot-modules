@@ -757,7 +757,6 @@ namespace ovobotModules {
         let onboardTempValue = 400;
         let humidityValue;
         pins.i2cWriteRegister(adSEG_ADDRESS + moduledress, 0x00, 0x01);
-        // let res = pins.i2cReadBuffer(address, 8);//Buffer
         let data1 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x05, NumberFormat.UInt8LE);
         let data2 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x06, NumberFormat.UInt8LE);
         let data3 = pins.i2cReadRegister(SEG_ADDRESS + module, 0x07, NumberFormat.UInt8LE);
